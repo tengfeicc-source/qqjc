@@ -56,6 +56,17 @@
         console.error("Identity错误:", err);
       });
     }
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- ✅ 处理邀请 / 重置密码跳转（放这里！） -->
+  <script>
+  (function () {
+    const hash = window.location.hash;
+
+    if (hash.includes("invite_token") || hash.includes("recovery_token")) {
+      window.location.replace("/admin/index.html" + hash);
+    }
+  })();
   </script>
 
 </body>
