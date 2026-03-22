@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>乔乔竞彩 - 后台管理</title>
+  <title>后台管理</title>
 </head>
 
 <body>
 
-  <!-- ✅ Identity（必须） -->
+  <!-- ✅ Identity -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   <!-- ✅ CMS -->
@@ -23,40 +23,40 @@
         if (!user) {
           console.log("未登录 → 自动打开登录框");
           window.netlifyIdentity.open();
+        } else {
+          console.log("已登录:", user);
         }
       });
 
-      // 登录后跳转后台
+      // 登录成功
       window.netlifyIdentity.on("login", user => {
-        console.log("登录成功:", user);
+        console.log("登录成功");
         document.location.href = "/admin/";
       });
 
       // 登出
       window.netlifyIdentity.on("logout", () => {
-        console.log("已登出");
         document.location.href = "/";
       });
 
-      // 👇 关键：处理邀请注册链接
+      // 邀请
       window.netlifyIdentity.on("invite", () => {
-        console.log("检测到邀请注册链接");
+        console.log("处理邀请");
         window.netlifyIdentity.open();
       });
 
-      // token 错误
+      // 重置密码
+      window.netlifyIdentity.on("recovery", () => {
+        console.log("处理密码恢复");
+        window.netlifyIdentity.open();
+      });
+
+      // 错误
       window.netlifyIdentity.on("error", err => {
-        console.error("Identity 错误:", err);
+        console.error("Identity错误:", err);
       });
     }
   </script>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-  </style>
 
 </body>
 </html>
