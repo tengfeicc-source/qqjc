@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>乔乔竞彩总进球</title>
     <div class="logo-container">
-        <img src="/二维码.jpg" alt="乔乔竞彩" class="site-logo"> 
+        <img src="/二维码.jpg" alt="乔乔竞彩" class="site-logo">
     </div>
     <style>
         * {
@@ -28,126 +28,69 @@
             margin: 0 auto;
         }
         .logo-container {
-    text-align: center;
-    margin: 150px 0; 
-    animation: fadeIn 1s ease-out 0.2s both;
-}
-
-.site-logo {
-    width: 200px;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-}
-
-.site-logo:hover {
-    transform: scale(1.05);
-}
-        /* ==================== 动画定义 ==================== */
-        
-        /* 淡入动画 */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            text-align: center;
+            margin: 150px 0;
+            animation: fadeIn 1s ease-out 0.2s both;
         }
 
-        /* 滑动进入 */
+        .site-logo {
+            width: 200px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .site-logo:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
-        /* 脉冲动画 */
         @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        /* 弹跳动画 */
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
-        /* 闪烁动画 */
         @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
-            }
-            100% {
-                background-position: 1000px 0;
-            }
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
         }
 
-        /* 旋转动画 */
         @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        /* 渐变流动 */
         @keyframes gradientFlow {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* 浮动动画 */
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
-
-        /* ==================== 基础样式 ==================== */
 
         .header-card {
             background: rgba(255, 255, 255, 0.98);
@@ -169,12 +112,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent
-            );
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             animation: shimmer 3s infinite;
         }
 
@@ -229,8 +167,6 @@
             animation: fadeIn 1.2s ease-out 0.5s both;
         }
 
-        /* ==================== 双卡片布局 ==================== */
-
         .cards-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -238,7 +174,6 @@
             margin-bottom: 20px;
         }
 
-        /* 胜率统计卡片 */
         .stats-card {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 20px;
@@ -260,7 +195,8 @@
             animation: pulse 3s infinite;
         }
 
-        .stats-card .section-title {
+        .stats-card .section-title,
+        .league-card .section-title {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -315,7 +251,6 @@
             margin-top: 5px;
         }
 
-        /* 热门联赛卡片 */
         .league-card {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 20px;
@@ -335,18 +270,6 @@
             height: 100%;
             background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
             animation: pulse 3s infinite 1s;
-        }
-
-        .league-card .section-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #2d3748;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e2e8f0;
         }
 
         .league-card .section-title::before {
@@ -404,8 +327,6 @@
             font-weight: 600;
             transition: all 0.3s ease;
         }
-
-        /* ==================== 推荐卡片 ==================== */
 
         .recommend-card {
             background: rgba(255, 255, 255, 0.98);
@@ -484,8 +405,6 @@
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
-        /* ==================== 记录卡片 ==================== */
-
         .record-card {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 20px;
@@ -561,8 +480,6 @@
             font-weight: 600;
         }
 
-        /* ==================== 提示卡片 ==================== */
-
         .tip-card {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 20px;
@@ -603,8 +520,6 @@
             animation: spin 10s linear infinite;
         }
 
-        /* ==================== 页脚 ==================== */
-
         .footer {
             text-align: center;
             color: rgba(255, 255, 255, 0.9);
@@ -621,8 +536,6 @@
             display: inline-block;
             animation: bounce 1s infinite;
         }
-
-        /* ==================== 响应式 ==================== */
 
         @media (max-width: 600px) {
             body {
@@ -671,8 +584,6 @@
             }
         }
 
-        /* ==================== 加载动画 ==================== */
-
         .loading-dots {
             display: inline-flex;
             gap: 5px;
@@ -697,7 +608,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- 头部 -->
         <div class="header-card">
             <h1>乔乔竞彩总进球</h1>
             <div class="info-row">
@@ -715,9 +625,7 @@
             </div>
         </div>
 
-        <!-- 双卡片行：胜率统计 + 热门联赛 -->
         <div class="cards-row">
-            <!-- 胜率统计卡片 -->
             <div class="stats-card">
                 <div class="section-title">胜率统计</div>
                 <div class="stats-grid">
@@ -740,12 +648,11 @@
                 </div>
             </div>
 
-            <!-- 热门联赛卡片 -->
             <div class="league-card">
                 <div class="section-title">热门联赛</div>
                 <div class="league-list" id="leagueList">
                     <div class="league-item">
-                        <span class="league-name">🏴󠁧󠁥󠁧 英超</span>
+                        <span class="league-name">🏴󠁧󠁥󠁧󠁿󠁿󠁿󠁿󠁿󠁿󠁿 英超</span>
                         <span class="league-count">12 场</span>
                     </div>
                     <div class="league-item">
@@ -757,14 +664,13 @@
                         <span class="league-count">8 场</span>
                     </div>
                     <div class="league-item">
-                        <span class="league-name">🇩 德甲</span>
+                        <span class="league-name">🇩🇪 德甲</span>
                         <span class="league-count">6 场</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 今日推荐 -->
         <div class="recommend-card">
             <div class="section-title">今日推荐</div>
             <div id="recommendList">
@@ -778,7 +684,6 @@
             </div>
         </div>
 
-        <!-- 比赛记录 -->
         <div class="record-card">
             <div class="section-title">比赛记录</div>
             <table class="record-table">
@@ -802,7 +707,6 @@
             </table>
         </div>
 
-        <!-- 温馨提示 -->
         <div class="tip-card">
             <div class="section-title">温馨提示</div>
             <div class="tip-content">
@@ -810,14 +714,12 @@
             </div>
         </div>
 
-        <!-- 页脚 -->
         <div class="footer">
             © 2024 乔乔竞彩 · 仅供娱乐参考 <span class="footer-heart">❤️</span>
         </div>
     </div>
 
     <script>
-        // 设置更新时间
         function updateTime() {
             const now = new Date();
             const timeStr = now.toLocaleString('zh-CN', {
@@ -832,25 +734,20 @@
         }
         updateTime();
 
-        // 加载数据
         function loadData() {
-            // 统计周期
             document.getElementById('period').textContent = '2024-03-10 至 2024-04-10';
             document.getElementById('totalMatches').textContent = '36';
-            
-            // 胜率统计
             document.getElementById('winRate').textContent = '78%';
             document.getElementById('totalPredict').textContent = '36';
             document.getElementById('winCount').textContent = '28';
             document.getElementById('streak').textContent = '5';
 
-            // 今日推荐数据
             const recommendations = [
                 { icon: '🔥', name: '016 西班牙人 VS 赫塔费', prediction: '1+2' },
                 { icon: '⭐', name: '023 奥萨苏纳 VS 赫罗纳', prediction: '2+3' },
                 { icon: '🎖️', name: '025 本菲卡 VS 吉马良斯', prediction: '3+4' }
             ];
-            
+
             const recommendList = document.getElementById('recommendList');
             recommendList.innerHTML = recommendations.map((item, index) => `
                 <div class="recommend-item" style="animation-delay: ${0.6 + index * 0.1}s">
@@ -862,7 +759,6 @@
                 </div>
             `).join('');
 
-            // 比赛记录数据
             const records = [
                 { date: '03-21', league: '西甲', teams: '西班牙人 vs 赫塔费', score: '未开始', goals: '1+2', result: '待中', status: 'pending' },
                 { date: '03-20', league: '英超', teams: '曼城 vs 阿森纳', score: '2-1', goals: '3', result: '胜', status: 'finished' },
@@ -886,7 +782,6 @@
 
         loadData();
 
-        // 添加数字滚动动画
         function animateValue(element, start, end, duration) {
             let startTimestamp = null;
             const step = (timestamp) => {
@@ -900,7 +795,6 @@
             window.requestAnimationFrame(step);
         }
 
-        // 页面加载完成后执行数字动画
         window.addEventListener('load', () => {
             setTimeout(() => {
                 animateValue(document.getElementById('winRate'), 0, 78, 1500);
@@ -910,5 +804,31 @@
             }, 1000);
         });
     </script>
+
+    <!-- ✅ 新增：Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- ✅ 新增：Identity 回调处理 -->
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            const hash = window.location.hash;
+            if (hash && (
+              hash.includes('invite_token') ||
+              hash.includes('confirmation_token') ||
+              hash.includes('recovery_token')
+            )) {
+              window.netlifyIdentity.open();
+            }
+          }
+        });
+
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    </script>
+
 </body>
 </html>
