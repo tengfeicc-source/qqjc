@@ -9,64 +9,47 @@
 
 <body>
 
-  <!-- ✅ Identity -->
+  <!-- ✅ Netlify Identity -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- ✅ CMS -->
+  <!-- ✅ Netlify CMS -->
   <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
 
   <script>
     if (window.netlifyIdentity) {
 
-      // 初始化
+      // 初始化：未登录自动弹登录
       window.netlifyIdentity.on("init", user => {
         if (!user) {
-          console.log("未登录 → 自动打开登录框");
           window.netlifyIdentity.open();
-        } else {
-          console.log("已登录:", user);
         }
       });
 
-      // 登录成功
-      window.netlifyIdentity.on("login", user => {
-        console.log("登录成功");
+      // 登录成功 → 留在 admin
+      window.netlifyIdentity.on("login", () => {
         document.location.href = "/admin/";
       });
 
-      // 登出
+      // 登出 → 回首页
       window.netlifyIdentity.on("logout", () => {
         document.location.href = "/";
       });
 
-      // 邀请
+      // 邀请用户（设置密码）
       window.netlifyIdentity.on("invite", () => {
-        console.log("处理邀请");
         window.netlifyIdentity.open();
       });
 
-      // 重置密码
+      // 忘记密码
       window.netlifyIdentity.on("recovery", () => {
-        console.log("处理密码恢复");
         window.netlifyIdentity.open();
       });
 
-      // 错误
+      // 错误日志
       window.netlifyIdentity.on("error", err => {
         console.error("Identity错误:", err);
       });
     }
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <!-- ✅ 处理邀请 / 重置密码跳转（放这里！） -->
-  <script>
-  (function () {
-    const hash = window.location.hash;
-
-    if (hash.includes("invite_token") || hash.includes("recovery_token")) {
-      window.location.replace("/admin/index.html" + hash);
-    }
-  })();
   </script>
 
 </body>
