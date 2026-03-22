@@ -4,23 +4,59 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>乔乔竞彩 - 数据管理</title>
-  <link rel="icon" type="image/png" href="/favicon.png" />
+  <title>乔乔竞彩 - 后台管理</title>
 </head>
+
 <body>
-  <!-- 引入 Netlify CMS -->
+
+  <!-- ✅ Identity（必须） -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- ✅ CMS -->
   <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
-  
-  <!-- 自定义样式 -->
+
+  <script>
+    if (window.netlifyIdentity) {
+
+      // 初始化
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          console.log("未登录 → 自动打开登录框");
+          window.netlifyIdentity.open();
+        }
+      });
+
+      // 登录后跳转后台
+      window.netlifyIdentity.on("login", user => {
+        console.log("登录成功:", user);
+        document.location.href = "/admin/";
+      });
+
+      // 登出
+      window.netlifyIdentity.on("logout", () => {
+        console.log("已登出");
+        document.location.href = "/";
+      });
+
+      // 👇 关键：处理邀请注册链接
+      window.netlifyIdentity.on("invite", () => {
+        console.log("检测到邀请注册链接");
+        window.netlifyIdentity.open();
+      });
+
+      // token 错误
+      window.netlifyIdentity.on("error", err => {
+        console.error("Identity 错误:", err);
+      });
+    }
+  </script>
+
   <style>
-    .nc-root { background: #f5f7fa; }
-    .nc-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-    #loading { 
-      text-align: center; 
-      padding: 50px; 
-      font-family: sans-serif;
-      color: #666;
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     }
   </style>
+
 </body>
 </html>
