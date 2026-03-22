@@ -1,0 +1,41 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "data"
+    label: "竞彩数据"
+    folder: "/"
+    create: false
+    editor:
+      preview: false
+    fields:
+      - { label: "统计周期", name: "period", widget: "string" }
+      - label: "胜率统计"
+        name: "stats"
+        widget: "object"
+        fields:
+          - { label: "胜率", name: "winRate", widget: "string" }
+          - { label: "预测场次", name: "totalPredict", widget: "number" }
+          - { label: "命中场次", name: "winCount", widget: "number" }
+          - { label: "当前连红", name: "streak", widget: "number" }
+      - label: "今日推荐"
+        name: "recommendations"
+        widget: "list"
+        fields:
+          - { label: "图标", name: "icon", widget: "string" }
+          - { label: "比赛名称", name: "name", widget: "string" }
+          - { label: "预测进球", name: "prediction", widget: "string" }
+      - label: "比赛记录"
+        name: "records"
+        widget: "list"
+        fields:
+          - { label: "日期", name: "date", widget: "string" }
+          - { label: "联赛", name: "league", widget: "string" }
+          - { label: "比赛双方", name: "teams", widget: "string" }
+          - { label: "比分", name: "score", widget: "string" }
+          - { label: "预测进球", name: "goals", widget: "string" }
+          - { label: "结果", name: "result", widget: "select", options: ["胜", "负", "待中"] }

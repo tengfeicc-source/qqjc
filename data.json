@@ -1,0 +1,39 @@
+{
+  "period": "2026-03-01 至 2026-04-01",
+  "stats": {
+    "winRate": "78%",
+    "totalPredict": 36,
+    "winCount": 28,
+    "streak": 5
+  },
+  "recommendations": [
+    {
+      "icon": "🔥",
+      "name": "016 西班牙人 VS 赫塔费",
+      "prediction": "1+2"
+    },
+    {
+      "icon": "⭐",
+      "name": "023 奥萨苏纳 VS 赫罗纳",
+      "prediction": "2+3"
+    }
+  ],
+  "records": [
+    {
+      "date": "03-22",
+      "league": "西甲",
+      "teams": "西班牙人 vs 赫塔费",
+      "score": "未开始",
+      "goals": "1+2",
+      "result": "待中"
+    },
+    {
+      "date": "03-21",
+      "league": "英超",
+      "teams": "曼城 vs 阿森纳",
+      "score": "2-1",
+      "goals": "3",
+      "result": "胜"
+    }
+  ]
+}
