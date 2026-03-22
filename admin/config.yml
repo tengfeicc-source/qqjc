@@ -2,17 +2,21 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "images"
+media_folder: "static/images"
 public_folder: "/images"
 
+publish_mode: editorial_workflow
+
 collections:
-  - name: "data"
-    label: "竞彩数据"
-    folder: "/"
-    create: false
-    editor:
-      preview: false
+  - name: "posts"
+    label: "文章"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "日期", name: "date", widget: "datetime" }
+      - { label: "内容", name: "body", widget: "markdown" }
       - { label: "统计周期", name: "period", widget: "string" }
       - label: "胜率统计"
         name: "stats"
