@@ -9,43 +9,36 @@
 
 <body>
 
-  <!-- ✅ Netlify Identity -->
+  <!-- Netlify Identity -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- ✅ Netlify CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.10.1/dist/decap-cms.js"></script>
+  <!-- ✅ Decap CMS（改用 jsdelivr CDN + 精确版本号） -->
+  <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.10.1/dist/decap-cms.js"></script>
 
   <script>
     if (window.netlifyIdentity) {
-
-      // 初始化：未登录自动弹登录
       window.netlifyIdentity.on("init", user => {
         if (!user) {
           window.netlifyIdentity.open();
         }
       });
 
-      // 登录成功 → 留在 admin
       window.netlifyIdentity.on("login", () => {
         document.location.href = "/admin/";
       });
 
-      // 登出 → 回首页
       window.netlifyIdentity.on("logout", () => {
         document.location.href = "/";
       });
 
-      // 邀请用户（设置密码）
       window.netlifyIdentity.on("invite", () => {
         window.netlifyIdentity.open();
       });
 
-      // 忘记密码
       window.netlifyIdentity.on("recovery", () => {
         window.netlifyIdentity.open();
       });
 
-      // 错误日志
       window.netlifyIdentity.on("error", err => {
         console.error("Identity错误:", err);
       });
