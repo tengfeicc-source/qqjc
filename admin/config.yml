@@ -1,45 +1,94 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: w992665802/qqjc
   branch: main
+  auth_endpoint: auth
 
-media_folder: "static/images"
+media_folder: "images"
 public_folder: "/images"
 
-publish_mode: editorial_workflow
-
 collections:
-  - name: "posts"
-    label: "文章"
-    folder: "content/posts"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "标题", name: "title", widget: "string" }
-      - { label: "日期", name: "date", widget: "datetime" }
-      - { label: "内容", name: "body", widget: "markdown" }
-      - { label: "统计周期", name: "period", widget: "string" }
-      - label: "胜率统计"
-        name: "stats"
-        widget: "object"
+  - name: "data"
+    label: "网站数据管理"
+    files:
+      - name: "site_data"
+        label: "网站数据"
+        file: "data.json"
+        description: "管理页面所有数据内容"
         fields:
-          - { label: "胜率", name: "winRate", widget: "string" }
-          - { label: "预测场次", name: "totalPredict", widget: "number" }
-          - { label: "命中场次", name: "winCount", widget: "number" }
-          - { label: "当前连红", name: "streak", widget: "number" }
-      - label: "今日推荐"
-        name: "recommendations"
-        widget: "list"
-        fields:
-          - { label: "图标", name: "icon", widget: "string" }
-          - { label: "比赛名称", name: "name", widget: "string" }
-          - { label: "预测进球", name: "prediction", widget: "string" }
-      - label: "比赛记录"
-        name: "records"
-        widget: "list"
-        fields:
-          - { label: "日期", name: "date", widget: "string" }
-          - { label: "联赛", name: "league", widget: "string" }
-          - { label: "比赛双方", name: "teams", widget: "string" }
-          - { label: "比分", name: "score", widget: "string" }
-          - { label: "预测进球", name: "goals", widget: "string" }
-          - { label: "结果", name: "result", widget: "select", options: ["胜", "负", "待中"] }
+          - label: "统计周期"
+            name: "period"
+            widget: "string"
+            hint: "例如：2026-03-01 至 2026-04-01"
+
+          - label: "站点Logo跳转链接"
+            name: "siteLink"
+            widget: "string"
+            required: false
+            hint: "点击页面顶部Logo时跳转的外部链接"
+
+          - label: "推荐列表"
+            name: "recommendations"
+            widget: "list"
+            summary: "{{icon}} {{name}} → {{prediction}}"
+            fields:
+              - label: "图标"
+                name: "icon"
+                widget: "string"
+                default: "⭐"
+
+              - label: "比赛名称"
+                name: "name"
+                widget: "string"
+
+              - label: "预测结果"
+                name: "prediction"
+                widget: "string"
+
+              - label: "跳转链接（可选）"
+                name: "link"
+                widget: "string"
+                required: false
+
+          - label: "比赛记录列表"
+            name: "records"
+            widget: "list"
+            summary: "{{date}} {{league}} {{teams}} → {{result}}"
+            fields:
+              - label: "日期"
+                name: "date"
+                widget: "string"
+
+              - label: "联赛"
+                name: "league"
+                widget: "string"
+
+              - label: "比赛双方"
+                name: "teams"
+                widget: "string"
+
+              - label: "比分"
+                name: "score"
+                widget: "string"
+
+              - label: "进球预测"
+                name: "goals"
+                widget: "string"
+
+              - label: "结果"
+                name: "result"
+                widget: "select"
+                options:
+                  - label: "✅ 命中（胜）"
+                    value: "胜"
+                  - label: "❌ 未中（负）"
+                    value: "负"
+                  - label: "⏳ 待定"
+                    value: "待中"
+                  - label: "➖ 平"
+                    value: "平"
+
+              - label: "跳转链接（可选）"
+                name: "link"
+                widget: "string"
+                required: false
