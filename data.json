@@ -11,8 +11,7 @@
     {
       "icon": "⭐",
       "name": "025奥格斯堡VS斯图加特",
-      "prediction": "2+3",
-      "link": ""
+      "prediction": "2+3"
     },
     {
       "icon": "⭐",
@@ -46,8 +45,7 @@
       "teams": "利物浦 vs 切尔西",
       "score": "1-1",
       "goals": "2",
-      "result": "胜",
-      "link": ""
+      "result": "胜"
     },
     {
       "date": "03-19",
@@ -55,8 +53,7 @@
       "teams": "AC米兰 vs 尤文图斯",
       "score": "0-2",
       "goals": "2",
-      "result": "胜",
-      "link": ""
+      "result": "胜"
     },
     {
       "date": "03-18",
@@ -64,8 +61,7 @@
       "teams": "拜仁 vs 多特蒙德",
       "score": "3-0",
       "goals": "3",
-      "result": "胜",
-      "link": ""
+      "result": "胜"
     },
     {
       "date": "03-17",
@@ -73,8 +69,15 @@
       "teams": "巴萨 vs 皇马",
       "score": "1-0",
       "goals": "1",
-      "result": "负",
-      "link": ""
+      "result": "负"
+    }
+  ],
+  "leagues": [
+    {
+      "name": "1",
+      "count": 1,
+      "link": "",
+      "matches": []
     }
   ]
 }
