@@ -11,13 +11,22 @@ async function handleRequest(request) {
   const path = url.pathname;
 
   if (path === '/auth') {
-    const githubAuthUrl = 'https://github.com/login/oauth/authorize' +
+    const githubAuthUrl =
+      'https://github.com/login/oauth/authorize' +
       '?client_id=' + GITHUB_CLIENT_ID +
       '&redirect_uri=' + encodeURIComponent(REDIRECT_URI) +
-      '&scope=repo user';
+      '&scope=repo%20user';
+
     return new Response(
-      '<html><body><script>window.location.href="' + githubAuthUrl + '";</script></body></html>',
-      { headers: { 'Content-Type': 'text/html' } }
+      '<html><head><meta charset="utf-8"></head><body>' +
+      '<script>window.location.href="' + githubAuthUrl + '";</script>' +
+      '</body></html>',
+      {
+        headers: {
+          'Content-Type': 'text/html; charset=utf-8',
+          'Access-Control-Allow-Origin': '*'
+        }
+      }
     );
   }
 
@@ -42,27 +51,27 @@ async function handleRequest(request) {
     });
 
     const tokenData = await tokenRes.json();
-    const token = tokenData.access_token || '';
+    const accessToken = tokenData.access_token || '';
 
-    const html = `<!DOCTYPE html>
-<html><body>
-<script>
-  (function() {
-    var token = "${token}";
-    function receiveMessage(e) {
-      var data = JSON.stringify({ token: token, provider: "github" });
-      window.opener.postMessage("authorization:github:success:" + data, e.origin);
-      window.removeEventListener("message", receiveMessage);
-    }
-    window.addEventListener("message", receiveMessage);
-    window.opener.postMessage("authorizing:github", "*");
-  })();
-</script>
-</body></html>`;
+    const html =
+      '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>' +
+      '<script>' +
+      '(function() {' +
+      '  var token = "' + accessToken + '";' +
+      '  function receiveMessage(e) {' +
+      '    var payload = "authorization:github:success:" + JSON.stringify({token: token, provider: "github"});' +
+      '    window.opener.postMessage(payload, e.origin);' +
+      '    window.removeEventListener("message", receiveMessage, false);' +
+      '  }' +
+      '  window.addEventListener("message", receiveMessage, false);' +
+      '  window.opener.postMessage("authorizing:github", "*");' +
+      '})();' +
+      '</script>' +
+      '</body></html>';
 
     return new Response(html, {
       headers: {
-        'Content-Type': 'text/html',
+        'Content-Type': 'text/html; charset=utf-8',
         'Access-Control-Allow-Origin': '*'
       }
     });
