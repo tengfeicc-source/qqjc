@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: w992665802/qqjc
+  repo: tengfeicc-source/qqjc
   branch: main
   auth_endpoint: auth
 
