@@ -1,5 +1,5 @@
-const GITHUB_CLIENT_ID = '你的Client ID';
-const GITHUB_CLIENT_SECRET = '你的Client Secret';
+const GITHUB_CLIENT_ID = 'Ov23liOmp3QETGGh7il9';
+const GITHUB_CLIENT_SECRET = '8539612ebbc323e70f74ea216c9d978f58d8cf26';
 const REDIRECT_URI = 'https://qqjc-auth.workers.dev/callback';
 
 async function handleRequest(request) {
