@@ -1,21 +1,24 @@
 {
   "period": "2026-03-01 至 2026-04-01",
-  "stats": {
-    "winRate": "78%",
-    "totalPredict": 36,
-    "winCount": 28,
-    "streak": 5
-  },
+  "siteLink": "https://example.com",
   "recommendations": [
     {
       "icon": "🔥",
-      "name": "016 西班牙人 VS 赫塔费",
-      "prediction": "1+2"
+      "name": "023纽约城VS迈阿密国际",
+      "prediction": "3+4",
+      "link": "https://www.dongqiudi.com/match/12345"
     },
     {
       "icon": "⭐",
-      "name": "023 奥萨苏纳 VS 赫罗纳",
-      "prediction": "2+3"
+      "name": "025奥格斯堡VS斯图加特",
+      "prediction": "2+3",
+      "link": ""
+    },
+    {
+      "icon": "⭐",
+      "name": "026佛罗伦萨VS国际米兰",
+      "prediction": "2+3",
+      "link": "https://www.dongqiudi.com/match/12347"
     }
   ],
   "records": [
@@ -25,7 +28,8 @@
       "teams": "西班牙人 vs 赫塔费",
       "score": "未开始",
       "goals": "1+2",
-      "result": "待中"
+      "result": "待中",
+      "link": "https://www.dongqiudi.com/match/10001"
     },
     {
       "date": "03-21",
@@ -33,7 +37,44 @@
       "teams": "曼城 vs 阿森纳",
       "score": "2-1",
       "goals": "3",
-      "result": "胜"
+      "result": "胜",
+      "link": "https://www.dongqiudi.com/match/10002"
+    },
+    {
+      "date": "03-20",
+      "league": "英超",
+      "teams": "利物浦 vs 切尔西",
+      "score": "1-1",
+      "goals": "2",
+      "result": "胜",
+      "link": ""
+    },
+    {
+      "date": "03-19",
+      "league": "意甲",
+      "teams": "AC米兰 vs 尤文图斯",
+      "score": "0-2",
+      "goals": "2",
+      "result": "胜",
+      "link": ""
+    },
+    {
+      "date": "03-18",
+      "league": "德甲",
+      "teams": "拜仁 vs 多特蒙德",
+      "score": "3-0",
+      "goals": "3",
+      "result": "胜",
+      "link": ""
+    },
+    {
+      "date": "03-17",
+      "league": "西甲",
+      "teams": "巴萨 vs 皇马",
+      "score": "1-0",
+      "goals": "1",
+      "result": "负",
+      "link": ""
     }
   ]
 }
