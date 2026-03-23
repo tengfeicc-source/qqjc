@@ -21,8 +21,7 @@
     .admin .msg { margin-bottom: 16px; padding: 12px; border-radius: 6px; display: none; }
     .admin .msg.ok { background: #0d4429; color: #3fb950; display: block; }
     .admin .msg.err { background: #490202; color: #f85149; display: block; }
-    .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; margin-bottom: 20px; }
-    .section h3 { color: #f0f6fc; margin-bottom: 16px; }
+    .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24 .section h3 { color: #f0f6fc; margin-bottom: 16px; }
     label { display: block; color: #8b949e; font-size: 13px; margin-bottom: 4px; margin-top: 12px; }
     label:first-child { margin-top: 0; }
     .section input, .section select { width: 100%; padding: 10px; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; font-size: 14px; }
@@ -70,7 +69,8 @@
       <button class="add-btn" onclick="addLeague()">+ 添加联赛</button>
     </div>
     <div class="actions">
-      <button class="btn-save" onclick="doSave()">保存并提交</button>
+      <px; margin-bottom: 20px; }
+   button class="btn-save" onclick="doSave()">保存并提交</button>
       <button class="btn-logout" onclick="doLogout()">退出登录</button>
     </div>
   </div>
@@ -210,7 +210,8 @@
           teams:e.querySelector('.c-teams').value,
           score:e.querySelector('.c-score').value,
           goals:e.querySelector('.c-goals').value,
-          result:e.querySelector('.cvalue||undefined
+          result:e.querySelector('.c-result').value,
+          link:e.querySelector('.c-link').value||undefined
         });
       });
       var leagues=[];
@@ -244,12 +245,12 @@
 
     async function doSave(){
       var d=collect();
-      var c=btoa(unescape(encodeURIComponent(JSON.stringify(d,null,2))));
+      var content=btoa(unescape(encodeURIComponent(JSON.stringify(d,null,2))));
       try{
         var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+FILE,{
           method:'PUT',
           headers:{'Authorization':'token '+TOKEN,'Accept':'application/vnd.github.v3.json','Content-Type':'application/json'},
-          body:JSON.stringify({message:'Update data.json',content:c,sha:SHA,branch:BRANCH})
+          body:JSON.stringify({message:'Update data.json',content:content,sha:SHA,branch:BRANCH})
         });
         if(r.ok){
           var x=await r.json();
