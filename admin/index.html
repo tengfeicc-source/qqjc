@@ -79,15 +79,30 @@
     var TOKEN=localStorage.getItem('gh_token')||'',SHA='';
 
     function showMsg(t,tp){var e=document.getElementById('msg');e.textContent=t;e.className='msg '+tp;}
-    function doLogin(){TOKEN=document.getElementById('tokenInput').value.trim();if(!TOKEN)return alert('请输入Token');localStorage.setItem('gh_token',TOKEN);loadData();}
-    function doLogout(){localStorage.removeItem('gh_token');TOKEN='';document.getElementById('loginPage').style.display='flex';document.getElementById('adminPage').style.display='none';}
+
+    function doLogin(){
+      TOKEN=document.getElementById('tokenInput').value.trim();
+      if(!TOKEN)return alert('请输入Token');
+      localStorage.setItem('gh_token',TOKEN);
+      loadData();
+    }
+
+    function doLogout(){
+      localStorage.removeItem('gh_token');
+      TOKEN='';
+      document.getElementById('loginPage').style.display='flex';
+      document.getElementById('adminPage').style.display='none';
+    }
 
     async function loadData(){
       try{
-        var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+FILE,{headers:{'Authorization':'token '+TOKEN,'Accept':'application/vnd.github.v3.json'}});
+        var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+FILE,{
+          headers:{'Authorization':'token '+TOKEN,'Accept':'application/vnd.github.v3.json'}
+        });
         if(r.status===401){alert('Token无效');doLogout();return;}
         if(!r.ok){alert('加载失败:'+r.status);return;}
-        var d=await r.json();SHA=d.sha;
+        var d=await r.json();
+        SHA=d.sha;
         var j=JSON.parse(decodeURIComponent(escape(atob(d.content))));
         render(j);
         document.getElementById('loginPage').style.display='none';
@@ -108,7 +123,8 @@
 
     function addRec(d){
       d=d||{};
-      var e=document.createElement('div');e.className='list-item';
+      var e=document.createElement('div');
+      e.className='list-item';
       e.innerHTML='<button class="remove" onclick="this.parentElement.remove()">删除</button>'+
         '<label>图标</label><input class="r-icon" value="'+(d.icon||'⭐')+'">'+
         '<label>比赛名称</label><input class="r-name" value="'+(d.name||'')+'">'+
@@ -119,7 +135,8 @@
 
     function addRecord(d){
       d=d||{};
-      var e=document.createElement('div');e.className='list-item';
+      var e=document.createElement('div');
+      e.className='list-item';
       e.innerHTML='<button class="remove" onclick="this.parentElement.remove()">删除</button>'+
         '<label>日期</label><input class="c-date" value="'+(d.date||'')+'">'+
         '<label>联赛</label><input class="c-league" value="'+(d.league||'')+'">'+
@@ -136,7 +153,6 @@
       document.getElementById('recList2').appendChild(e);
     }
 
-    // ===== 热门联赛 =====
     function addLeague(data){
       data=data||{};
       var div=document.createElement('div');
@@ -157,7 +173,9 @@
 
     function addLeagueMatch(btn,data){
       data=data||{};
-      var container=btn.previousElement.className='list-item';
+      var container=btn.previousElementSibling;
+      var div=document.createElement('div');
+      div.className='list-item';
       div.style.marginTop='8px';
       div.innerHTML=
         '<button class="remove" onclick="this.parentElement.remove()">删除</button>'+
@@ -169,14 +187,11 @@
           '<option value="未开始"'+(data.status==='未开始'?' selected':'')+'>未开始</option>'+
           '<option value="进行中"'+(data.status==='进行中'?' selected':'')+'>进行中</option>'+
           '<option value="已结束"'+(data.status==='已结束'?' selected':'')+'>已结束</option>'+
-        '</selectSibling;
-      var div=document.createElement('div');
-      div>'+
+        '</select>'+
         '<label>跳转链接</label><input class="lm-link" value="'+(data.link||'')+'">';
       container.appendChild(div);
     }
 
-    // ===== 收集数据 =====
     function collect(){
       var r=[];
       document.querySelectorAll('#recList .list-item').forEach(function(e){
@@ -195,8 +210,7 @@
           teams:e.querySelector('.c-teams').value,
           score:e.querySelector('.c-score').value,
           goals:e.querySelector('.c-goals').value,
-          result:e.querySelector('.c-result').value,
-          link:e.querySelector('.c-link').value||undefined
+          result:e.querySelector('.cvalue||undefined
         });
       });
       var leagues=[];
@@ -235,18 +249,21 @@
         var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+FILE,{
           method:'PUT',
           headers:{'Authorization':'token '+TOKEN,'Accept':'application/vnd.github.v3.json','Content-Type':'application/json'},
-          body:JSON.stringify,
-      "link": "",
-      "matches": [
-        {
-          "teams": "曼城 vs 阿森纳",
-          "time": "03-21",
-          "score": "2-1",
-          "prediction": "3",
-          "status": "已结束",
-          "link": ""
+          body:JSON.stringify({message:'Update data.json',content:c,sha:SHA,branch:BRANCH})
+        });
+        if(r.ok){
+          var x=await r.json();
+          SHA=x.content.sha;
+          showMsg('保存成功！','ok');
+        }else{
+          showMsg('保存失败:'+r.status,'err');
         }
-      ]
+      }catch(e){
+        showMsg('网络错误:'+e.message,'err');
+      }
     }
-  ]
-}
+
+    if(TOKEN)loadData();
+  </script>
+</body>
+</html>
