@@ -16,231 +16,237 @@
     .box button:hover { background: #2ea043; }
     .box p { margin-top: 16px; font-size: 13px; color: #8b949e; }
     .box a { color: #58a6ff; text-decoration: none; }
-    .box a:hover { text-decoration: underline; }
-
     .admin { display: none; max-width: 960px; margin: 0 auto; padding: 30px 20px; }
-    .admin h1 { color: #f0f6fc; margin-bottom: 6px; font-size: 28px; }
-    .admin .sub { color: #8b949e; margin-bottom: 24px; font-size: 14px; }
-    .admin .msg { margin-bottom: 16px; padding: 12px 16px; border-radius: 6px; font-size: 14px; display: none; }
+    .admin h1 { color: #f0f6fc; margin-bottom: 20px; }
+    .admin .msg { margin-bottom: 16px; padding: 12px; border-radius: 6px; display: none; }
     .admin .msg.ok { background: #0d4429; color: #3fb950; display: block; }
     .admin .msg.err { background: #490202; color: #f85149; display: block; }
-
     .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; margin-bottom: 20px; }
-    .section h3 { color: #f0f6fc; margin-bottom: 16px; font-size: 18px; }
+    .section h3 { color: #f0f6fc; margin-bottom: 16px; }
     label { display: block; color: #8b949e; font-size: 13px; margin-bottom: 4px; margin-top: 12px; }
     label:first-child { margin-top: 0; }
-    .section input, .section select { width: 100%; padding: 10px; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; font-size: 14px; outline: none; }
-    .section input:focus, .section select:focus { border-color: #58a6ff; }
-
+    .section input, .section select { width: 100%; padding: 10px; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; font-size: 14px; }
     .list-item { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 16px; margin-bottom: 12px; position: relative; }
     .list-item .remove { position: absolute; top: 8px; right: 12px; background: #da3633; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; cursor: pointer; font-size: 12px; }
-    .list-item .remove:hover { background: #f85149; }
     .add-btn { background: transparent; border: 1px dashed #30363d; border-radius: 6px; padding: 10px; color: #58a6ff; cursor: pointer; width: 100%; font-size: 14px; }
-    .add-btn:hover { border-color: #58a6ff; background: rgba(88,166,255,0.05); }
-
+    .add-btn:hover { border-color: #58a6ff; }
     .actions { display: flex; gap: 12px; margin-top: 20px; }
-    .actions button { padding: 12px 28px; border: none; border-radius: 6px; font-size: 15px; cursor: pointer; font-weight: 600; }
+    .actions button { padding: 12px 28px; border: none; border-radius: 6px; font-size: 15px; cursor: pointer; }
     .btn-save { background: #238636; color: #fff; }
-    .btn-save:hover { background: #2ea043; }
     .btn-logout { background: #21262d; color: #f85149; border: 1px solid #30363d; }
-    .btn-logout:hover { background: #da3633; color: #fff; }
+    .sub-label { margin-top: 16px; font-weight: 600; color: #f0f6fc; font-size: 13px; padding-top: 12px; border-top: 1px solid #30363d; }
   </style>
 </head>
 <body>
-
-<!-- 登录页 -->
-<div class="page" id="loginPage">
-  <div class="box">
-    <h2>后台管理登录</h2>
-    <input type="password" id="tokenInput" placeholder="GitHub Personal Access Token" />
-    <button onclick="doLogin()">登录</button>
-    <p>首次使用请 <a href="https://github.com/settings/tokens/new?scopes=repo&description=admin-cms" target="_blank">创建 Token</a>，勾选 <b>repo</b> 权限</p>
+  <div class="page" id="loginPage">
+    <div class="box">
+      <h2>后台管理登录</h2>
+      <input type="password" id="tokenInput" placeholder="GitHub Personal Access Token" />
+      <button onclick="doLogin()">登录</button>
+      <p>首次使用请 <a href="https://github.com/settings/tokens/new?scopes=repo&description=admin" target="_blank">创建 Token</a>，勾选 repo 权限</p>
+    </div>
   </div>
-</div>
-
-<!-- 管理页 -->
-<div class="admin" id="adminPage">
-  <h1>网站数据管理</h1>
-  <div class="sub">仓库: tengfeicc-source/qqjc &nbsp;|&nbsp; 文件: data.json</div>
-  <div class="msg" id="msg"></div>
-
-  <div class="section">
-    <h3>基本设置</h3>
-    <label>统计周期</label>
-    <input type="text" id="period" placeholder="例如：2026-03-01 至 2026-04-01" />
-    <label>站点Logo跳转链接</label>
-    <input type="text" id="siteLink" placeholder="点击Logo时跳转的外部链接" />
+  <div class="admin" id="adminPage">
+    <h1>网站数据管理</h1>
+    <div class="msg" id="msg"></div>
+    <div class="section">
+      <h3>基本设置</h3>
+      <label>统计周期</label><input type="text" id="period" />
+      <label>站点Logo跳转链接</label><input type="text" id="siteLink" />
+    </div>
+    <div class="section">
+      <h3>推荐列表</h3>
+      <div id="recList"></div>
+      <button class="add-btn" onclick="addRec()">+ 添加推荐项</button>
+    </div>
+    <div class="section">
+      <h3>比赛记录</h3>
+      <div id="recList2"></div>
+      <button class="add-btn" onclick="addRecord()">+ 添加比赛记录</button>
+    </div>
+    <div class="section">
+      <h3>热门联赛</h3>
+      <div id="leagueList"></div>
+      <button class="add-btn" onclick="addLeague()">+ 添加联赛</button>
+    </div>
+    <div class="actions">
+      <button class="btn-save" onclick="doSave()">保存并提交</button>
+      <button class="btn-logout" onclick="doLogout()">退出登录</button>
+    </div>
   </div>
+  <script>
+    var REPO='tengfeicc-source/qqjc',BRANCH='main',FILE='data.json';
+    var TOKEN=localStorage.getItem('gh_token')||'',SHA='';
 
-  <div class="section">
-    <h3>推荐列表</h3>
-    <div id="recList"></div>
-    <button class="add-btn" onclick="addRec()">+ 添加推荐项</button>
-  </div>
+    function showMsg(t,tp){var e=document.getElementById('msg');e.textContent=t;e.className='msg '+tp;}
+    function doLogin(){TOKEN=document.getElementById('tokenInput').value.trim();if(!TOKEN)return alert('请输入Token');localStorage.setItem('gh_token',TOKEN);loadData();}
+    function doLogout(){localStorage.removeItem('gh_token');TOKEN='';document.getElementById('loginPage').style.display='flex';document.getElementById('adminPage').style.display='none';}
 
-  <div class="section">
-    <h3>比赛记录</h3>
-    <div id="recList2"></div>
-    <button class="add-btn" onclick="addRecord()">+ 添加比赛记录</button>
-  </div>
-
-  <div class="actions">
-    <button class="btn-save" onclick="doSave()">保存并提交</button>
-    <button class="btn-logout" onclick="doLogout()">退出登录</button>
-  </div>
-</div>
-
-<script>
-const REPO = 'tengfeicc-source/qqjc';
-const BRANCH = 'main';
-const FILE = 'data.json';
-let TOKEN = localStorage.getItem('gh_token') || '';
-let SHA = '';
-
-function showMsg(t, type) {
-  const el = document.getElementById('msg');
-  el.textContent = t;
-  el.className = 'msg ' + type;
-}
-
-function doLogin() {
-  TOKEN = document.getElementById('tokenInput').value.trim();
-  if (!TOKEN) { alert('请输入 Token'); return; }
-  localStorage.setItem('gh_token', TOKEN);
-  loadData();
-}
-
-function doLogout() {
-  localStorage.removeItem('gh_token');
-  TOKEN = '';
-  document.getElementById('loginPage').style.display = 'flex';
-  document.getElementById('adminPage').style.display = 'none';
-}
-
-async function loadData() {
-  try {
-    const res = await fetch('https://api.github.com/repos/' + REPO + '/contents/' + FILE, {
-      headers: { 'Authorization': 'token ' + TOKEN, 'Accept': 'application/vnd.github.v3+json' }
-    });
-    if (res.status === 401) { alert('Token 无效'); doLogout(); return; }
-    if (!res.ok) { alert('加载失败: ' + res.status); return; }
-    const d = await res.json();
-    SHA = d.sha;
-    const json = JSON.parse(decodeURIComponent(escape(atob(d.content))));
-    renderForm(json);
-    document.getElementById('loginPage').style.display = 'none';
-    document.getElementById('adminPage').style.display = 'block';
-  } catch(e) { alert('错误: ' + e.message); }
-}
-
-function renderForm(data) {
-  document.getElementById('period').value = data.period || '';
-  document.getElementById('siteLink').value = data.siteLink || '';
-
-  const recDiv = document.getElementById('recList');
-  recDiv.innerHTML = '';
-  (data.recommendations || []).forEach(r => addRec(r));
-
-  const recDiv2 = document.getElementById('recList2');
-  recDiv2.innerHTML = '';
-  (data.records || []).forEach(r => addRecord(r));
-}
-
-function addRec(data) {
-  const d = data || {};
-  const div = document.createElement('div');
-  div.className = 'list-item';
-  div.innerHTML = '<button class="remove" onclick="this.parentElement.remove()">删除</button>' +
-    '<label>图标</label><input type="text" class="r-icon" value="' + (d.icon || '⭐') + '">' +
-    '<label>比赛名称</label><input type="text" class="r-name" value="' + (d.name || '') + '">' +
-    '<label>预测结果</label><input type="text" class="r-pred" value="' + (d.prediction || '') + '">' +
-    '<label>跳转链接</label><input type="text" class="r-link" value="' + (d.link || '') + '">';
-  document.getElementById('recList').appendChild(div);
-}
-
-function addRecord(data) {
-  const d = data || {};
-  const div = document.createElement('div');
-  div.className = 'list-item';
-  div.innerHTML = '<button class="remove" onclick="this.parentElement.remove()">删除</button>' +
-    '<label>日期</label><input type="text" class="c-date" value="' + (d.date || '') + '">' +
-    '<label>联赛</label><input type="text" class="c-league" value="' + (d.league || '') + '">' +
-    '<label>比赛双方</label><input type="text" class="c-teams" value="' + (d.teams || '') + '">' +
-    '<label>比分</label><input type="text" class="c-score" value="' + (d.score || '') + '">' +
-    '<label>进球预测</label><input type="text" class="c-goals" value="' + (d.goals || '') + '">' +
-    '<label>结果</label><select class="c-result">' +
-      '<option value="胜"' + (d.result === '胜' ? ' selected' : '') + '>✅ 命中（胜）</option>' +
-      '<option value="负"' + (d.result === '负' ? ' selected' : '') + '>❌ 未中（负）</option>' +
-      '<option value="待中"' + (d.result === '待中' ? ' selected' : '') + '>⏳ 待定</option>' +
-      '<option value="平"' + (d.result === '平' ? ' selected' : '') + '>➖ 平</option>' +
-    '</select>' +
-    '<label>跳转链接</label><input type="text" class="c-link" value="' + (d.link || '') + '">';
-  document.getElementById('recList2').appendChild(div);
-}
-
-function collectData() {
-  const recs = [];
-  document.querySelectorAll('#recList .list-item').forEach(el => {
-    recs.push({
-      icon: el.querySelector('.r-icon').value,
-      name: el.querySelector('.r-name').value,
-      prediction: el.querySelector('.r-pred').value,
-      link: el.querySelector('.r-link').value || undefined
-    });
-  });
-
-  const records = [];
-  document.querySelectorAll('#recList2 .list-item').forEach(el => {
-    records.push({
-      date: el.querySelector('.c-date').value,
-      league: el.querySelector('.c-league').value,
-      teams: el.querySelector('.c-teams').value,
-      score: el.querySelector('.c-score').value,
-      goals: el.querySelector('.c-goals').value,
-      result: el.querySelector('.c-result').value,
-      link: el.querySelector('.c-link').value || undefined
-    });
-  });
-
-  return {
-    period: document.getElementById('period').value,
-    siteLink: document.getElementById('siteLink').value || undefined,
-    recommendations: recs,
-    records: records
-  };
-}
-
-async function doSave() {
-  const data = collectData();
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-  try {
-    const res = await fetch('https://api.github.com/repos/' + REPO + '/contents/' + FILE, {
-      method: 'PUT',
-      headers: {
-        'Authorization': 'token ' + TOKEN,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message: 'Update data.json via admin',
-        content: content,
-        sha: SHA,
-        branch: BRANCH
-      })
-    });
-    if (res.ok) {
-      const r = await res.json();
-      SHA = r.content.sha;
-      showMsg('保存成功！', 'ok');
-    } else {
-      showMsg('保存失败: ' + res.status, 'err');
+    async function loadData(){
+      try{
+        var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+FILE,{headers:{'Authorization':'token '+TOKEN,'Accept':'application/vnd.github.v3.json'}});
+        if(r.status===401){alert('Token无效');doLogout();return;}
+        if(!r.ok){alert('加载失败:'+r.status);return;}
+        var d=await r.json();SHA=d.sha;
+        var j=JSON.parse(decodeURIComponent(escape(atob(d.content))));
+        render(j);
+        document.getElementById('loginPage').style.display='none';
+        document.getElementById('adminPage').style.display='block';
+      }catch(e){alert('错误:'+e.message);}
     }
-  } catch(e) {
-    showMsg('网络错误: ' + e.message, 'err');
-  }
-}
 
-if (TOKEN) { loadData(); }
-</script>
-</body>
-</html>
+    function render(d){
+      document.getElementById('period').value=d.period||'';
+      document.getElementById('siteLink').value=d.siteLink||'';
+      document.getElementById('recList').innerHTML='';
+      (d.recommendations||[]).forEach(function(r){addRec(r);});
+      document.getElementById('recList2').innerHTML='';
+      (d.records||[]).forEach(function(r){addRecord(r);});
+      document.getElementById('leagueList').innerHTML='';
+      (d.leagues||[]).forEach(function(l){addLeague(l);});
+    }
+
+    function addRec(d){
+      d=d||{};
+      var e=document.createElement('div');e.className='list-item';
+      e.innerHTML='<button class="remove" onclick="this.parentElement.remove()">删除</button>'+
+        '<label>图标</label><input class="r-icon" value="'+(d.icon||'⭐')+'">'+
+        '<label>比赛名称</label><input class="r-name" value="'+(d.name||'')+'">'+
+        '<label>预测结果</label><input class="r-pred" value="'+(d.prediction||'')+'">'+
+        '<label>跳转链接</label><input class="r-link" value="'+(d.link||'')+'">';
+      document.getElementById('recList').appendChild(e);
+    }
+
+    function addRecord(d){
+      d=d||{};
+      var e=document.createElement('div');e.className='list-item';
+      e.innerHTML='<button class="remove" onclick="this.parentElement.remove()">删除</button>'+
+        '<label>日期</label><input class="c-date" value="'+(d.date||'')+'">'+
+        '<label>联赛</label><input class="c-league" value="'+(d.league||'')+'">'+
+        '<label>比赛双方</label><input class="c-teams" value="'+(d.teams||'')+'">'+
+        '<label>比分</label><input class="c-score" value="'+(d.score||'')+'">'+
+        '<label>进球预测</label><input class="c-goals" value="'+(d.goals||'')+'">'+
+        '<label>结果</label><select class="c-result">'+
+          '<option value="胜"'+(d.result==='胜'?' selected':'')+'>命中</option>'+
+          '<option value="负"'+(d.result==='负'?' selected':'')+'>未中</option>'+
+          '<option value="待中"'+(d.result==='待中'?' selected':'')+'>待定</option>'+
+          '<option value="平"'+(d.result==='平'?' selected':'')+'>平</option>'+
+        '</select>'+
+        '<label>跳转链接</label><input class="c-link" value="'+(d.link||'')+'">';
+      document.getElementById('recList2').appendChild(e);
+    }
+
+    // ===== 热门联赛 =====
+    function addLeague(data){
+      data=data||{};
+      var div=document.createElement('div');
+      div.className='list-item';
+      div.innerHTML=
+        '<button class="remove" onclick="this.parentElement.remove()">删除</button>'+
+        '<label>联赛名称</label><input class="l-name" value="'+(data.name||'')+'">'+
+        '<label>场次</label><input class="l-count" type="number" value="'+(data.count||0)+'">'+
+        '<label>跳转链接</label><input class="l-link" value="'+(data.link||'')+'">'+
+        '<label class="sub-label">该联赛下的比赛</label>'+
+        '<div class="l-matches"></div>'+
+        '<button class="add-btn" onclick="addLeagueMatch(this)" style="margin-top:8px">+ 添加比赛</button>';
+      document.getElementById('leagueList').appendChild(div);
+      if(data.matches&&data.matches.length>0){
+        data.matches.forEach(function(m){addLeagueMatch(div.querySelector('.add-btn'),m);});
+      }
+    }
+
+    function addLeagueMatch(btn,data){
+      data=data||{};
+      var container=btn.previousElement.className='list-item';
+      div.style.marginTop='8px';
+      div.innerHTML=
+        '<button class="remove" onclick="this.parentElement.remove()">删除</button>'+
+        '<label>比赛双方</label><input class="lm-teams" value="'+(data.teams||'')+'">'+
+        '<label>时间</label><input class="lm-time" value="'+(data.time||'')+'">'+
+        '<label>比分</label><input class="lm-score" value="'+(data.score||'')+'">'+
+        '<label>进球预测</label><input class="lm-pred" value="'+(data.prediction||'')+'">'+
+        '<label>状态</label><select class="lm-status">'+
+          '<option value="未开始"'+(data.status==='未开始'?' selected':'')+'>未开始</option>'+
+          '<option value="进行中"'+(data.status==='进行中'?' selected':'')+'>进行中</option>'+
+          '<option value="已结束"'+(data.status==='已结束'?' selected':'')+'>已结束</option>'+
+        '</selectSibling;
+      var div=document.createElement('div');
+      div>'+
+        '<label>跳转链接</label><input class="lm-link" value="'+(data.link||'')+'">';
+      container.appendChild(div);
+    }
+
+    // ===== 收集数据 =====
+    function collect(){
+      var r=[];
+      document.querySelectorAll('#recList .list-item').forEach(function(e){
+        r.push({
+          icon:e.querySelector('.r-icon').value,
+          name:e.querySelector('.r-name').value,
+          prediction:e.querySelector('.r-pred').value,
+          link:e.querySelector('.r-link').value||undefined
+        });
+      });
+      var c=[];
+      document.querySelectorAll('#recList2 .list-item').forEach(function(e){
+        c.push({
+          date:e.querySelector('.c-date').value,
+          league:e.querySelector('.c-league').value,
+          teams:e.querySelector('.c-teams').value,
+          score:e.querySelector('.c-score').value,
+          goals:e.querySelector('.c-goals').value,
+          result:e.querySelector('.c-result').value,
+          link:e.querySelector('.c-link').value||undefined
+        });
+      });
+      var leagues=[];
+      document.querySelectorAll('#leagueList .list-item').forEach(function(e){
+        var matches=[];
+        e.querySelectorAll('.l-matches .list-item').forEach(function(m){
+          matches.push({
+            teams:m.querySelector('.lm-teams').value,
+            time:m.querySelector('.lm-time').value,
+            score:m.querySelector('.lm-score').value||'--',
+            prediction:m.querySelector('.lm-pred').value,
+            status:m.querySelector('.lm-status').value,
+            link:m.querySelector('.lm-link').value||''
+          });
+        });
+        leagues.push({
+          name:e.querySelector('.l-name').value,
+          count:parseInt(e.querySelector('.l-count').value)||matches.length,
+          link:e.querySelector('.l-link').value||'',
+          matches:matches
+        });
+      });
+      return{
+        period:document.getElementById('period').value,
+        siteLink:document.getElementById('siteLink').value||undefined,
+        recommendations:r,
+        records:c,
+        leagues:leagues.length>0?leagues:undefined
+      };
+    }
+
+    async function doSave(){
+      var d=collect();
+      var c=btoa(unescape(encodeURIComponent(JSON.stringify(d,null,2))));
+      try{
+        var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+FILE,{
+          method:'PUT',
+          headers:{'Authorization':'token '+TOKEN,'Accept':'application/vnd.github.v3.json','Content-Type':'application/json'},
+          body:JSON.stringify,
+      "link": "",
+      "matches": [
+        {
+          "teams": "曼城 vs 阿森纳",
+          "time": "03-21",
+          "score": "2-1",
+          "prediction": "3",
+          "status": "已结束",
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
