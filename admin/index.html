@@ -1,11 +1,246 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager</title>
+  <title>后台管理</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
+    .page { display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .box { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 40px; text-align: center; max-width: 420px; width: 90%; }
+    .box h2 { margin-bottom: 20px; color: #f0f6fc; font-size: 22px; }
+    .box input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; font-size: 14px; outline: none; }
+    .box input:focus { border-color: #58a6ff; }
+    .box button { width: 100%; padding: 12px; margin-top: 16px; border: none; border-radius: 6px; background: #238636; color: #fff; font-size: 16px; cursor: pointer; font-weight: 600; }
+    .box button:hover { background: #2ea043; }
+    .box p { margin-top: 16px; font-size: 13px; color: #8b949e; }
+    .box a { color: #58a6ff; text-decoration: none; }
+    .box a:hover { text-decoration: underline; }
+
+    .admin { display: none; max-width: 960px; margin: 0 auto; padding: 30px 20px; }
+    .admin h1 { color: #f0f6fc; margin-bottom: 6px; font-size: 28px; }
+    .admin .sub { color: #8b949e; margin-bottom: 24px; font-size: 14px; }
+    .admin .msg { margin-bottom: 16px; padding: 12px 16px; border-radius: 6px; font-size: 14px; display: none; }
+    .admin .msg.ok { background: #0d4429; color: #3fb950; display: block; }
+    .admin .msg.err { background: #490202; color: #f85149; display: block; }
+
+    .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; margin-bottom: 20px; }
+    .section h3 { color: #f0f6fc; margin-bottom: 16px; font-size: 18px; }
+    label { display: block; color: #8b949e; font-size: 13px; margin-bottom: 4px; margin-top: 12px; }
+    label:first-child { margin-top: 0; }
+    .section input, .section select { width: 100%; padding: 10px; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; font-size: 14px; outline: none; }
+    .section input:focus, .section select:focus { border-color: #58a6ff; }
+
+    .list-item { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 16px; margin-bottom: 12px; position: relative; }
+    .list-item .remove { position: absolute; top: 8px; right: 12px; background: #da3633; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; cursor: pointer; font-size: 12px; }
+    .list-item .remove:hover { background: #f85149; }
+    .add-btn { background: transparent; border: 1px dashed #30363d; border-radius: 6px; padding: 10px; color: #58a6ff; cursor: pointer; width: 100%; font-size: 14px; }
+    .add-btn:hover { border-color: #58a6ff; background: rgba(88,166,255,0.05); }
+
+    .actions { display: flex; gap: 12px; margin-top: 20px; }
+    .actions button { padding: 12px 28px; border: none; border-radius: 6px; font-size: 15px; cursor: pointer; font-weight: 600; }
+    .btn-save { background: #238636; color: #fff; }
+    .btn-save:hover { background: #2ea043; }
+    .btn-logout { background: #21262d; color: #f85149; border: 1px solid #30363d; }
+    .btn-logout:hover { background: #da3633; color: #fff; }
+  </style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@3.6.0/dist/decap-cms.js"></script>
+
+<!-- 登录页 -->
+<div class="page" id="loginPage">
+  <div class="box">
+    <h2>后台管理登录</h2>
+    <input type="password" id="tokenInput" placeholder="GitHub Personal Access Token" />
+    <button onclick="doLogin()">登录</button>
+    <p>首次使用请 <a href="https://github.com/settings/tokens/new?scopes=repo&description=admin-cms" target="_blank">创建 Token</a>，勾选 <b>repo</b> 权限</p>
+  </div>
+</div>
+
+<!-- 管理页 -->
+<div class="admin" id="adminPage">
+  <h1>网站数据管理</h1>
+  <div class="sub">仓库: tengfeicc-source/qqjc &nbsp;|&nbsp; 文件: data.json</div>
+  <div class="msg" id="msg"></div>
+
+  <div class="section">
+    <h3>基本设置</h3>
+    <label>统计周期</label>
+    <input type="text" id="period" placeholder="例如：2026-03-01 至 2026-04-01" />
+    <label>站点Logo跳转链接</label>
+    <input type="text" id="siteLink" placeholder="点击Logo时跳转的外部链接" />
+  </div>
+
+  <div class="section">
+    <h3>推荐列表</h3>
+    <div id="recList"></div>
+    <button class="add-btn" onclick="addRec()">+ 添加推荐项</button>
+  </div>
+
+  <div class="section">
+    <h3>比赛记录</h3>
+    <div id="recList2"></div>
+    <button class="add-btn" onclick="addRecord()">+ 添加比赛记录</button>
+  </div>
+
+  <div class="actions">
+    <button class="btn-save" onclick="doSave()">保存并提交</button>
+    <button class="btn-logout" onclick="doLogout()">退出登录</button>
+  </div>
+</div>
+
+<script>
+const REPO = 'tengfeicc-source/qqjc';
+const BRANCH = 'main';
+const FILE = 'data.json';
+let TOKEN = localStorage.getItem('gh_token') || '';
+let SHA = '';
+
+function showMsg(t, type) {
+  const el = document.getElementById('msg');
+  el.textContent = t;
+  el.className = 'msg ' + type;
+}
+
+function doLogin() {
+  TOKEN = document.getElementById('tokenInput').value.trim();
+  if (!TOKEN) { alert('请输入 Token'); return; }
+  localStorage.setItem('gh_token', TOKEN);
+  loadData();
+}
+
+function doLogout() {
+  localStorage.removeItem('gh_token');
+  TOKEN = '';
+  document.getElementById('loginPage').style.display = 'flex';
+  document.getElementById('adminPage').style.display = 'none';
+}
+
+async function loadData() {
+  try {
+    const res = await fetch('https://api.github.com/repos/' + REPO + '/contents/' + FILE, {
+      headers: { 'Authorization': 'token ' + TOKEN, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (res.status === 401) { alert('Token 无效'); doLogout(); return; }
+    if (!res.ok) { alert('加载失败: ' + res.status); return; }
+    const d = await res.json();
+    SHA = d.sha;
+    const json = JSON.parse(decodeURIComponent(escape(atob(d.content))));
+    renderForm(json);
+    document.getElementById('loginPage').style.display = 'none';
+    document.getElementById('adminPage').style.display = 'block';
+  } catch(e) { alert('错误: ' + e.message); }
+}
+
+function renderForm(data) {
+  document.getElementById('period').value = data.period || '';
+  document.getElementById('siteLink').value = data.siteLink || '';
+
+  const recDiv = document.getElementById('recList');
+  recDiv.innerHTML = '';
+  (data.recommendations || []).forEach(r => addRec(r));
+
+  const recDiv2 = document.getElementById('recList2');
+  recDiv2.innerHTML = '';
+  (data.records || []).forEach(r => addRecord(r));
+}
+
+function addRec(data) {
+  const d = data || {};
+  const div = document.createElement('div');
+  div.className = 'list-item';
+  div.innerHTML = '<button class="remove" onclick="this.parentElement.remove()">删除</button>' +
+    '<label>图标</label><input type="text" class="r-icon" value="' + (d.icon || '⭐') + '">' +
+    '<label>比赛名称</label><input type="text" class="r-name" value="' + (d.name || '') + '">' +
+    '<label>预测结果</label><input type="text" class="r-pred" value="' + (d.prediction || '') + '">' +
+    '<label>跳转链接</label><input type="text" class="r-link" value="' + (d.link || '') + '">';
+  document.getElementById('recList').appendChild(div);
+}
+
+function addRecord(data) {
+  const d = data || {};
+  const div = document.createElement('div');
+  div.className = 'list-item';
+  div.innerHTML = '<button class="remove" onclick="this.parentElement.remove()">删除</button>' +
+    '<label>日期</label><input type="text" class="c-date" value="' + (d.date || '') + '">' +
+    '<label>联赛</label><input type="text" class="c-league" value="' + (d.league || '') + '">' +
+    '<label>比赛双方</label><input type="text" class="c-teams" value="' + (d.teams || '') + '">' +
+    '<label>比分</label><input type="text" class="c-score" value="' + (d.score || '') + '">' +
+    '<label>进球预测</label><input type="text" class="c-goals" value="' + (d.goals || '') + '">' +
+    '<label>结果</label><select class="c-result">' +
+      '<option value="胜"' + (d.result === '胜' ? ' selected' : '') + '>✅ 命中（胜）</option>' +
+      '<option value="负"' + (d.result === '负' ? ' selected' : '') + '>❌ 未中（负）</option>' +
+      '<option value="待中"' + (d.result === '待中' ? ' selected' : '') + '>⏳ 待定</option>' +
+      '<option value="平"' + (d.result === '平' ? ' selected' : '') + '>➖ 平</option>' +
+    '</select>' +
+    '<label>跳转链接</label><input type="text" class="c-link" value="' + (d.link || '') + '">';
+  document.getElementById('recList2').appendChild(div);
+}
+
+function collectData() {
+  const recs = [];
+  document.querySelectorAll('#recList .list-item').forEach(el => {
+    recs.push({
+      icon: el.querySelector('.r-icon').value,
+      name: el.querySelector('.r-name').value,
+      prediction: el.querySelector('.r-pred').value,
+      link: el.querySelector('.r-link').value || undefined
+    });
+  });
+
+  const records = [];
+  document.querySelectorAll('#recList2 .list-item').forEach(el => {
+    records.push({
+      date: el.querySelector('.c-date').value,
+      league: el.querySelector('.c-league').value,
+      teams: el.querySelector('.c-teams').value,
+      score: el.querySelector('.c-score').value,
+      goals: el.querySelector('.c-goals').value,
+      result: el.querySelector('.c-result').value,
+      link: el.querySelector('.c-link').value || undefined
+    });
+  });
+
+  return {
+    period: document.getElementById('period').value,
+    siteLink: document.getElementById('siteLink').value || undefined,
+    recommendations: recs,
+    records: records
+  };
+}
+
+async function doSave() {
+  const data = collectData();
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+  try {
+    const res = await fetch('https://api.github.com/repos/' + REPO + '/contents/' + FILE, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'token ' + TOKEN,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'Update data.json via admin',
+        content: content,
+        sha: SHA,
+        branch: BRANCH
+      })
+    });
+    if (res.ok) {
+      const r = await res.json();
+      SHA = r.content.sha;
+      showMsg('保存成功！', 'ok');
+    } else {
+      showMsg('保存失败: ' + res.status, 'err');
+    }
+  } catch(e) {
+    showMsg('网络错误: ' + e.message, 'err');
+  }
+}
+
+if (TOKEN) { loadData(); }
+</script>
 </body>
 </html>
