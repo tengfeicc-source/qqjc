@@ -2,7 +2,7 @@ backend:
   name: github
   repo: tengfeicc-source/qqjc
   branch: main
-  auth_endpoint: auth
+  auth_endpoint: https://qqjc-auth.jctj.workers.dev/
 
 media_folder: "images"
 public_folder: "/images"
