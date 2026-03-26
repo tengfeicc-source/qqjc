@@ -74,20 +74,8 @@
   ],
   "leagues": [
     {
-      "name": "英超",
-      "count": 0,
-      "link": "",
-      "matches": []
-    },
-    {
       "name": "世预赛",
       "count": 9,
-      "link": "",
-      "matches": []
-    },
-    {
-      "name": "西甲",
-      "count": 0,
       "link": "",
       "matches": []
     }
