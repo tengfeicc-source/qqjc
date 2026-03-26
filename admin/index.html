@@ -18,9 +18,6 @@
     .box a { color: #58a6ff; text-decoration: none; }
     .admin { display: none; max-width: 960px; margin: 0 auto; padding: 30px 20px; }
     .admin h1 { color: #f0f6fc; margin-bottom: 20px; }
-    .admin .msg { margin-bottom: 16px; padding: 12px; border-radius: 6px; display: none; }
-    .admin .msg.ok { background: #0d4429; color: #3fb950; display: block; }
-    .admin .msg.err { background: #490202; color: #f85149; display: block; }
     .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; margin-bottom: 20px; }
     .section h3 { color: #f0f6fc; margin-bottom: 16px; }
     label { display: block; color: #8b949e; font-size: 13px; margin-bottom: 4px; margin-top: 12px; }
@@ -35,6 +32,45 @@
     .btn-save { background: #238636; color: #fff; }
     .btn-logout { background: #21262d; color: #f85149; border: 1px solid #30363d; }
     .sub-label { margin-top: 16px; font-weight: 600; color: #f0f6fc; font-size: 13px; padding-top: 12px; border-top: 1px solid #30363d; }
+
+    /* Modal 样式 */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-content {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    .modal-icon { font-size: 48px; margin-bottom: 16px; }
+    .modal-title { font-size: 18px; font-weight: 600; color: #f0f6fc; margin-bottom: 8px; }
+    .modal-message { font-size: 14px; color: #8b949e; margin-bottom: 20px; }
+    .modal-btn {
+      padding: 10px 32px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .modal-btn.ok { background: #238636; color: #fff; }
+    .modal-btn.err { background: #da3633; color: #fff; }
+    .modal-btn:hover { opacity: 0.9; }
   </style>
 </head>
 <body>
@@ -48,11 +84,9 @@
   </div>
   <div class="admin" id="adminPage">
     <h1>网站数据管理</h1>
-    <div class="msg" id="msg"></div>
     <div class="section">
       <h3>基本设置</h3>
       <label>统计周期</label><input type="text" id="period" />
-      <label>站点Logo跳转链接</label><input type="text" id="siteLink" />
     </div>
     <div class="section">
       <h3>推荐列表</h3>
@@ -74,21 +108,55 @@
       <button class="btn-logout" onclick="doLogout()">退出登录</button>
     </div>
   </div>
+
+  <!-- 提示弹出框 -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-content">
+      <div class="modal-icon" id="modalIcon">✅</div>
+      <div class="modal-title" id="modalTitle">提示</div>
+      <div class="modal-message" id="modalMessage">消息内容</div>
+      <button class="modal-btn ok" id="modalBtn" onclick="closeModal()">确定</button>
+    </div>
+  </div>
+
   <script>
     var REPO='tengfeicc-source/qqjc',BRANCH='main',FILE='data.json';
     var TOKEN=localStorage.getItem('gh_token')||'',SHA='';
 
-    function showMsg(t,tp){
-      var e=document.getElementById('msg');
-      e.textContent=t;
-      e.className='msg '+tp;
-      e.style.display='block';
-      setTimeout(function(){e.style.display='none';}, 5000);
+    // 显示弹出框
+    function showModal(type, title, message){
+      var modal = document.getElementById('modal');
+      var icon = document.getElementById('modalIcon');
+      var titleEl = document.getElementById('modalTitle');
+      var msgEl = document.getElementById('modalMessage');
+      var btn = document.getElementById('modalBtn');
+
+      if(type === 'ok'){
+        icon.textContent = '✅';
+        btn.className = 'modal-btn ok';
+      }else if(type === 'err'){
+        icon.textContent = '❌';
+        btn.className = 'modal-btn err';
+      }else if(type === 'info'){
+        icon.textContent = 'ℹ️';
+        btn.className = 'modal-btn ok';
+      }
+
+      titleEl.textContent = title;
+      msgEl.textContent = message;
+      modal.classList.add('show');
+    }
+
+    function closeModal(){
+      document.getElementById('modal').classList.remove('show');
     }
 
     function doLogin(){
       TOKEN=document.getElementById('tokenInput').value.trim();
-      if(!TOKEN)return alert('请输入Token');
+      if(!TOKEN){
+        showModal('err', '错误', '请输入 GitHub Token');
+        return;
+      }
       localStorage.setItem('gh_token',TOKEN);
       loadData();
     }
@@ -105,20 +173,28 @@
         var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+FILE,{
           headers:{'Authorization':'token '+TOKEN,'Accept':'application/vnd.github.v3.json'}
         });
-        if(r.status===401){alert('Token无效');doLogout();return;}
-        if(!r.ok){alert('加载失败:'+r.status);return;}
+        if(r.status===401){
+          showModal('err', '登录失败', 'Token 无效，请重新登录');
+          doLogout();
+          return;
+        }
+        if(!r.ok){
+          showModal('err', '加载失败', '状态码: '+r.status);
+          return;
+        }
         var d=await r.json();
         SHA=d.sha;
         var j=JSON.parse(decodeURIComponent(escape(atob(d.content))));
         render(j);
         document.getElementById('loginPage').style.display='none';
         document.getElementById('adminPage').style.display='block';
-      }catch(e){alert('错误:'+e.message);}
+      }catch(e){
+        showModal('err', '错误', e.message);
+      }
     }
 
     function render(d){
       document.getElementById('period').value=d.period||'';
-      document.getElementById('siteLink').value=d.siteLink||'';
       document.getElementById('recList').innerHTML='';
       (d.recommendations||[]).forEach(function(r){addRec(r);});
       document.getElementById('recList2').innerHTML='';
@@ -240,7 +316,6 @@
       });
       return{
         period:document.getElementById('period').value,
-        siteLink:document.getElementById('siteLink').value||undefined,
         recommendations:r,
         records:c,
         leagues:leagues.length>0?leagues:undefined
@@ -248,29 +323,32 @@
     }
 
     async function doSave(){
-      showMsg('正在保存...', 'ok');
+      showModal('info', '保存中', '正在提交数据到 GitHub，请稍候...');
+
       var d=collect();
       var content=btoa(unescape(encodeURIComponent(JSON.stringify(d,null,2))));
+
       try{
         var r=await fetch('https://api.github.com/repos/'+REPO+'/contents/'+FILE,{
           method:'PUT',
           headers:{'Authorization':'token '+TOKEN,'Accept':'application/vnd.github.v3.json','Content-Type':'application/json'},
           body:JSON.stringify({message:'Update data.json',content:content,sha:SHA,branch:BRANCH})
         });
+
         if(r.ok){
           var x=await r.json();
           SHA=x.content.sha;
-          showMsg('保存成功！数据已提交到 GitHub。', 'ok');
+          showModal('ok', '保存成功', '数据已成功提交到 GitHub');
         }else{
           var errorText = '保存失败: ' + r.status;
           try {
             var errorData = await r.json();
             errorText += ' - ' + (errorData.message || errorData.error || '未知错误');
           } catch(e) {}
-          showMsg(errorText, 'err');
+          showModal('err', '保存失败', errorText);
         }
       }catch(e){
-        showMsg('网络错误: ' + e.message, 'err');
+        showModal('err', '网络错误', e.message);
       }
     }
 
