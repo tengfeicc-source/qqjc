@@ -263,6 +263,8 @@
         '<button class="remove" onclick="this.parentElement.remove()">删除</button>'+
         '<label>比赛双方</label><input class="lm-teams" value="'+(data.teams||'')+'">'+
         '<label>时间</label><input class="lm-time" value="'+(data.time||'')+'">'+
+        '<label>比分</label><input class="lm-score" value="'+(data.score||'')+'">'+  // 添加比分输入框
+        '<label>进球预测</label><input class="lm-pred" value="'+(data.prediction||'')+'">'+  // 添加进球预测输入框
         '<label>状态</label><select class="lm-status">'+
           '<option value="未开始"'+(data.status==='未开始'?' selected':'')+'>未开始</option>'+
           '<option value="进行中"'+(data.status==='进行中'?' selected':'')+'>进行中</option>'+
@@ -301,8 +303,8 @@
           matches.push({
             teams:m.querySelector('.lm-teams').value,
             time:m.querySelector('.lm-time').value,
-            score:m.querySelector('.lm-score').value||'--',
-            prediction:m.querySelector('.lm-pred').value,
+            score:(m.querySelector('.lm-score') && m.querySelector('.lm-score').value) || '--',
+            prediction:(m.querySelector('.lm-pred') && m.querySelector('.lm-pred').value) || '',
             status:m.querySelector('.lm-status').value,
             link:m.querySelector('.lm-link').value||''
           });
