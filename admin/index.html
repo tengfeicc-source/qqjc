@@ -331,12 +331,13 @@
         });
       }
 
-      return{
-        period:document:c,
-        leagues:leagues.length.getElementById('period').value,
-        recommendations:r,
-        records>0?leagues:undefined
+      return {
+        period: document.getElementById('period').value,
+        recommendations: r,
+        records: c.length > 0 ? c : undefined,
+        leagues: leagues.length > 0 ? leagues : undefined
       };
+
     }
 
     async function doSave(){
