@@ -21,7 +21,8 @@
     .admin .msg { margin-bottom: 16px; padding: 12px; border-radius: 6px; display: none; }
     .admin .msg.ok { background: #0d4429; color: #3fb950; display: block; }
     .admin .msg.err { background: #490202; color: #f85149; display: block; }
-    .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24 .section h3 { color: #f0f6fc; margin-bottom: 16px; }
+    .section { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; margin-bottom: 20px; }
+    .section h3 { color: #f0f6fc; margin-bottom: 16px; }
     label { display: block; color: #8b949e; font-size: 13px; margin-bottom: 4px; margin-top: 12px; }
     label:first-child { margin-top: 0; }
     .section input, .section select { width: 100%; padding: 10px; border: 1px solid #30363d; border-radius: 6px; background: #0d1117; color: #c9d1d9; font-size: 14px; }
@@ -69,8 +70,7 @@
       <button class="add-btn" onclick="addLeague()">+ 添加联赛</button>
     </div>
     <div class="actions">
-      <px; margin-bottom: 20px; }
-   button class="btn-save" onclick="doSave()">保存并提交</button>
+      <button class="btn-save" onclick="doSave()">保存并提交</button>
       <button class="btn-logout" onclick="doLogout()">退出登录</button>
     </div>
   </div>
@@ -181,6 +181,8 @@
         '<button class="remove" onclick="this.parentElement.remove()">删除</button>'+
         '<label>比赛双方</label><input class="lm-teams" value="'+(data.teams||'')+'">'+
         '<label>时间</label><input class="lm-time" value="'+(data.time||'')+'">'+
+        '<label>比分</label><input class="lm-score" value="'+(data.score||'')+'">'+
+        '<label>进球预测</label><input class="lm-pred" value="'+(data.prediction||'')+'">'+
         '<label>状态</label><select class="lm-status">'+
           '<option value="未开始"'+(data.status==='未开始'?' selected':'')+'>未开始</option>'+
           '<option value="进行中"'+(data.status==='进行中'?' selected':'')+'>进行中</option>'+
