@@ -52,7 +52,6 @@
     <div class="section">
       <h3>基本设置</h3>
       <label>统计周期</label><input type="text" id="period" />
-      <label>站点Logo跳转链接</label><input type="text" id="siteLink" />
     </div>
     <div class="section">
       <h3>推荐列表</h3>
@@ -78,7 +77,13 @@
     var REPO='tengfeicc-source/qqjc',BRANCH='main',FILE='data.json';
     var TOKEN=localStorage.getItem('gh_token')||'',SHA='';
 
-    function showMsg(t,tp){var e=document.getElementById('msg');e.textContent=t;e.className='msg '+tp;}
+    function showMsg(t,tp){
+      var e=document.getElementById('msg');
+      e.textContent=t;
+      e.className='msg '+tp;
+      e.style.display='block';
+      setTimeout(function(){e.style.display='none';}, 5000);
+    }
 
     function doLogin(){
       TOKEN=document.getElementById('tokenInput').value.trim();
@@ -181,8 +186,6 @@
         '<button class="remove" onclick="this.parentElement.remove()">删除</button>'+
         '<label>比赛双方</label><input class="lm-teams" value="'+(data.teams||'')+'">'+
         '<label>时间</label><input class="lm-time" value="'+(data.time||'')+'">'+
-        '<label>比分</label><input class="lm-score" value="'+(data.score||'')+'">'+
-        '<label>进球预测</label><input class="lm-pred" value="'+(data.prediction||'')+'">'+
         '<label>状态</label><select class="lm-status">'+
           '<option value="未开始"'+(data.status==='未开始'?' selected':'')+'>未开始</option>'+
           '<option value="进行中"'+(data.status==='进行中'?' selected':'')+'>进行中</option>'+
@@ -244,6 +247,7 @@
     }
 
     async function doSave(){
+      showMsg('正在保存...', 'ok');
       var d=collect();
       var content=btoa(unescape(encodeURIComponent(JSON.stringify(d,null,2))));
       try{
@@ -255,12 +259,17 @@
         if(r.ok){
           var x=await r.json();
           SHA=x.content.sha;
-          showMsg('保存成功！','ok');
+          showMsg('保存成功！数据已提交到 GitHub。', 'ok');
         }else{
-          showMsg('保存失败:'+r.status,'err');
+          var errorText = '保存失败: ' + r.status;
+          try {
+            var errorData = await r.json();
+            errorText += ' - ' + (errorData.message || errorData.error || '未知错误');
+          } catch(e) {}
+          showMsg(errorText, 'err');
         }
       }catch(e){
-        showMsg('网络错误:'+e.message,'err');
+        showMsg('网络错误: ' + e.message, 'err');
       }
     }
 
