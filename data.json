@@ -93,6 +93,18 @@
       "name": "世预赛",
       "count": 9,
       "link": "https://www.sporttery.cn/jc/jsq/zqspf/",
+      "matches": [
+        {
+          "teams": "1",
+          "time": "1",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "name": "",
+      "count": 0,
+      "link": "",
       "matches": []
     }
   ]
