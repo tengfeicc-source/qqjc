@@ -279,66 +279,67 @@
     }
 
     function collect(){
-      var r=[];
-      var recItems = document.querySelectorAll('#recList .list-item');
-      for(var i=0; i<recItems.length; i++){
-        var e = recItems[i];
-        r.push({
-          icon:getSafeValue(e, '.r-icon'),
-          name:getSafeValue(e, '.r-name'),
-          prediction:getSafeValue(e, '.r-pred'),
-          link:getSafeValue(e, '.r-link') || undefined
-        });
-      }
+  var r=[];
+  var recItems = document.querySelectorAll('#recList .list-item');
+  for(var i=0; i<recItems.length; i++){
+    var e = recItems[i];
+    r.push({
+      icon:getSafeValue(e, '.r-icon'),
+      name:getSafeValue(e, '.r-name'),
+      prediction:getSafeValue(e, '.r-pred'),
+      link:getSafeValue(e, '.r-link') || ''
+    });
+  }
 
-      var c=[];
-      var recordItems = document.querySelectorAll('#recList2 .list-item');
-      for(var j=0; j<recordItems.length; j++){
-        var e2 = recordItems[j];
-        c.push({
-          date:getSafeValue(e2, '.c-date'),
-          league:getSafeValue(e2, '.c-league'),
-          teams:getSafeValue(e2, '.c-teams'),
-          score:getSafeValue(e2, '.c-score'),
-          goals:getSafeValue(e2, '.c-goals'),
-          result:getSafeValue(e2, '.c-result'),
-          link:getSafeValue(e2, '.c-link') || undefined
-        });
-      }
+  var c=[];
+  var recordItems = document.querySelectorAll('#recList2 .list-item');
+  for(var j=0; j<recordItems.length; j++){
+    var e2 = recordItems[j];
+    c.push({
+      date:getSafeValue(e2, '.c-date'),
+      league:getSafeValue(e2, '.c-league'),
+      teams:getSafeValue(e2, '.c-teams'),
+      score:getSafeValue(e2, '.c-score'),
+      goals:getSafeValue(e2, '.c-goals'),
+      result:getSafeValue(e2, '.c-result'),
+      link:getSafeValue(e2, '.c-link') || ''
+    });
+  }
 
-      var leagues=[];
-      var leagueItems = document.querySelectorAll('#leagueList .list-item');
-      for(var k=0; k<leagueItems.length; k++){
-        var e3 = leagueItems[k];
-        var matches=[];
-        var matchItems = e3.querySelectorAll('.l-matches .list-item');
-        for(var m=0; m<matchItems.length; m++){
-          var matchEl = matchItems[m];
-          matches.push({
-            teams:getSafeValue(matchEl, '.lm-teams'),
-            time:getSafeValue(matchEl, '.lm-time'),
-            link:getSafeValue(matchEl, '.lm-link') || ''
-          });
-        }
-        var lName = e3.querySelector('.l-name');
-        var lCount = e3.querySelector('.l-count');
-        var lLink = e3.querySelector('.l-link');
-        leagues.push({
-          name: lName ? lName.value : '',
-          count: lCount ? (parseInt(lCount.value) || matches.length) : matches.length,
-          link: lLink ? lLink.value : '',
-          matches: matches
-        });
-      }
-
-      return {
-        period: document.getElementById('period').value,
-        recommendations: r,
-        records: c.length > 0 ? c : undefined,
-        leagues: leagues.length > 0 ? leagues : undefined
-      };
-
+  var leagues=[];
+  var leagueItems = document.querySelectorAll('#leagueList .list-item');
+  for(var k=0; k<leagueItems.length; k++){
+    var e3 = leagueItems[k];
+    var matches=[];
+    var matchItems = e3.querySelectorAll('.l-matches .list-item');
+    for(var m=0; m<matchItems.length; m++){
+      var matchEl = matchItems[m];
+      matches.push({
+        teams:getSafeValue(matchEl, '.lm-teams'),
+        time:getSafeValue(matchEl, '.lm-time'),
+        link:getSafeValue(matchEl, '.lm-link') || ''
+      });
     }
+    var lName = e3.querySelector('.l-name');
+    var lCount = e3.querySelector('.l-count');
+    var lLink = e3.querySelector('.l-link');
+    leagues.push({
+      name: lName ? lName.value : '',
+      count: lCount ? (parseInt(lCount.value) || matches.length) : matches.length,
+      link: lLink ? lLink.value : '',
+      matches: matches
+    });
+  }
+
+  // ✅ 始终返回数组，不返回 undefined
+  return {
+    period: document.getElementById('period').value,
+    recommendations: r,
+    records: c,
+    leagues: leagues
+  };
+}
+
 
     async function doSave(){
       showModal('info', '保存中', '正在提交数据到 GitHub，请稍候...');
