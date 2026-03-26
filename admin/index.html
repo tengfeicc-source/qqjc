@@ -307,6 +307,7 @@
   }
 
   var leagues=[];
+  // ✅ 用 > 只取直接子级，避免嵌套的比赛卡片被当成联赛
   var leagueItems = document.querySelectorAll('#leagueList > .list-item');
   for(var k=0; k<leagueItems.length; k++){
     var e3 = leagueItems[k];
@@ -331,7 +332,6 @@
     });
   }
 
-  // ✅ 始终返回数组，不返回 undefined
   return {
     period: document.getElementById('period').value,
     recommendations: r,
@@ -339,6 +339,7 @@
     leagues: leagues
   };
 }
+
 
 
     async function doSave(){
