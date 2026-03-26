@@ -223,14 +223,6 @@
         '<label>日期</label><input class="c-date" value="'+(d.date||'')+'">'+
         '<label>联赛</label><input class="c-league" value="'+(d.league||'')+'">'+
         '<label>比赛双方</label><input class="c-teams" value="'+(d.teams||'')+'">'+
-        '<label>比分</label><input class="c-score" value="'+(d.score||'')+'">'+
-        '<label>进球预测</label><input class="c-goals" value="'+(d.goals||'')+'">'+
-        '<label>结果</label><select class="c-result">'+
-          '<option value="胜"'+(d.result==='胜'?' selected':'')+'>命中</option>'+
-          '<option value="负"'+(d.result==='负'?' selected':'')+'>未中</option>'+
-          '<option value="待中"'+(d.result==='待中'?' selected':'')+'>待定</option>'+
-          '<option value="平"'+(d.result==='平'?' selected':'')+'>平</option>'+
-        '</select>'+
         '<label>跳转链接</label><input class="c-link" value="'+(d.link||'')+'">';
       document.getElementById('recList2').appendChild(e);
     }
