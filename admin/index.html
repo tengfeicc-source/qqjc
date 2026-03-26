@@ -223,6 +223,14 @@
         '<label>日期</label><input class="c-date" value="'+(d.date||'')+'">'+
         '<label>联赛</label><input class="c-league" value="'+(d.league||'')+'">'+
         '<label>比赛双方</label><input class="c-teams" value="'+(d.teams||'')+'">'+
+        '<label>比分</label><input class="c-score" value="'+(d.score||'')+'">'+
+        '<label>进球预测</label><input class="c-goals" value="'+(d.goals||'')+'">'+
+        '<label>结果</label><select class="c-result">'+
+          '<option value="胜"'+(d.result==='胜'?' selected':'')+'>命中</option>'+
+          '<option value="负"'+(d.result==='负'?' selected':'')+'>未中</option>'+
+          '<option value="待中"'+(d.result==='待中'?' selected':'')+'>待定</option>'+
+          '<option value="平"'+(d.result==='平'?' selected':'')+'>平</option>'+
+        '</select>'+
         '<label>跳转链接</label><input class="c-link" value="'+(d.link||'')+'">';
       document.getElementById('recList2').appendChild(e);
     }
@@ -255,13 +263,6 @@
         '<button class="remove" onclick="this.parentElement.remove()">删除</button>'+
         '<label>比赛双方</label><input class="lm-teams" value="'+(data.teams||'')+'">'+
         '<label>时间</label><input class="lm-time" value="'+(data.time||'')+'">'+
-        '<label>比分</label><input class="lm-score" value="'+(data.score||'')+'">'+  // 添加比分输入框
-        '<label>进球预测</label><input class="lm-pred" value="'+(data.prediction||'')+'">'+  // 添加进球预测输入框
-        '<label>状态</label><select class="lm-status">'+
-          '<option value="未开始"'+(data.status==='未开始'?' selected':'')+'>未开始</option>'+
-          '<option value="进行中"'+(data.status==='进行中'?' selected':'')+'>进行中</option>'+
-          '<option value="已结束"'+(data.status==='已结束'?' selected':'')+'>已结束</option>'+
-        '</select>'+
         '<label>跳转链接</label><input class="lm-link" value="'+(data.link||'')+'">';
       container.appendChild(div);
     }
