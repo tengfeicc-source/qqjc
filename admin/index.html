@@ -267,26 +267,31 @@
       container.appendChild(div);
     }
 
+    function getSafeValue(element, selector) {
+      var el = element.querySelector(selector);
+      return el ? el.value : '';
+    }
+
     function collect(){
       var r=[];
       document.querySelectorAll('#recList .list-item').forEach(function(e){
         r.push({
-          icon:e.querySelector('.r-icon').value,
-          name:e.querySelector('.r-name').value,
-          prediction:e.querySelector('.r-pred').value,
-          link:e.querySelector('.r-link').value||undefined
+          icon:getSafeValue(e, '.r-icon'),
+          name:getSafeValue(e, '.r-name'),
+          prediction:getSafeValue(e, '.r-pred'),
+          link:getSafeValue(e, '.r-link') || undefined
         });
       });
       var c=[];
       document.querySelectorAll('#recList2 .list-item').forEach(function(e){
         c.push({
-          date:e.querySelector('.c-date').value,
-          league:e.querySelector('.c-league').value,
-          teams:e.querySelector('.c-teams').value,
-          score:e.querySelector('.c-score').value,
-          goals:e.querySelector('.c-goals').value,
-          result:e.querySelector('.c-result').value,
-          link:e.querySelector('.c-link').value||undefined
+          date:getSafeValue(e, '.c-date'),
+          league:getSafeValue(e, '.c-league'),
+          teams:getSafeValue(e, '.c-teams'),
+          score:getSafeValue(e, '.c-score'),
+          goals:getSafeValue(e, '.c-goals'),
+          result:getSafeValue(e, '.c-result'),
+          link:getSafeValue(e, '.c-link') || undefined
         });
       });
       var leagues=[];
@@ -294,16 +299,19 @@
         var matches=[];
         e.querySelectorAll('.l-matches .list-item').forEach(function(m){
           matches.push({
-            teams:m.querySelector('.lm-teams').value,
-            time:m.querySelector('.lm-time').value,
-            link:m.querySelector('.lm-link').value||''
+            teams:getSafeValue(m, '.lm-teams'),
+            time:getSafeValue(m, '.lm-time'),
+            link:getSafeValue(m, '.lm-link') || ''
           });
         });
+        var lName = e.querySelector('.l-name');
+        var lCount = e.querySelector('.l-count');
+        var lLink = e.querySelector('.l-link');
         leagues.push({
-          name:e.querySelector('.l-name').value,
-          count:parseInt(e.querySelector('.l-count').value)||matches.length,
-          link:e.querySelector('.l-link').value||'',
-          matches:matches
+          name: lName ? lName.value : '',
+          count: lCount ? (parseInt(lCount.value) || matches.length) : matches.length,
+          link: lLink ? lLink.value : '',
+          matches: matches
         });
       });
       return{
