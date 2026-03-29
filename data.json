@@ -3,15 +3,9 @@
   "recommendations": [
     {
       "icon": "🔥",
-      "name": "003 澳大利亚 vs 喀麦隆",
+      "name": "001哥伦比亚VS法国",
       "prediction": "3+4",
-      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038602"
-    },
-    {
-      "icon": "⭐",
-      "name": "011 西班牙 vs 塞尔维亚",
-      "prediction": "2+3",
-      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038604"
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038679"
     }
   ],
   "records": [
@@ -104,58 +98,64 @@
       "goals": "2+3",
       "result": "负",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038604"
+    },
+    {
+      "date": "03-27",
+      "league": "世预赛",
+      "teams": "澳大利亚 vs 喀麦隆",
+      "score": "1-0",
+      "goals": "3+4",
+      "result": "负",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038639"
+    },
+    {
+      "date": "03-27",
+      "league": "世预赛",
+      "teams": "西班牙 vs 塞尔维亚",
+      "score": "3-0",
+      "goals": "2+3",
+      "result": "胜",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038647"
+    },
+    {
+      "date": "03-28",
+      "league": "英甲",
+      "teams": "雷丁 VS 维冈",
+      "score": "3-0",
+      "goals": "2+3",
+      "result": "胜",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038668"
+    },
+    {
+      "date": "03-28",
+      "league": "英甲",
+      "teams": "斯托克港 VS 温布尔登",
+      "score": "3-0",
+      "goals": "2+3",
+      "result": "胜",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038669"
     }
   ],
   "leagues": [
     {
       "name": "世预赛",
-      "count": 9,
+      "count": 3,
       "link": "https://www.sporttery.cn/jc/jsq/zqspf/",
       "matches": [
         {
-          "teams": "001土耳其 VS 罗马尼亚",
-          "time": "2026-03-27 01:00",
-          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038598"
+          "teams": "001哥伦比亚 VS 法国",
+          "time": "2026-03-30 03:00",
+          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038679"
         },
         {
-          "teams": "002意大利 VS 北爱尔兰",
-          "time": " 2026-03-27 03:45",
-          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038599"
+          "teams": "001新西兰VS智利",
+          "time": "2026-03-30 14:00",
+          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038680"
         },
         {
-          "teams": "003斯洛伐克 VS 科索沃",
-          "time": "2026-03-27 03:45",
-          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038600"
-        },
-        {
-          "teams": "004威尔士 VS 波黑",
-          "time": "2026-03-27 03:45",
-          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038601"
-        },
-        {
-          "teams": "005波兰 VS 阿尔巴尼",
-          "time": "2026-03-27 03:45",
-          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038602"
-        },
-        {
-          "teams": "006捷克 VS 爱尔兰",
-          "time": "2026-03-27 03:45",
-          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038603"
-        },
-        {
-          "teams": "007丹麦 VS 北马其顿",
-          "time": "2026-03-27 03:45",
-          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038604"
-        },
-        {
-          "teams": "009玻利维亚 VS 苏里南",
-          "time": "2026-03-27 06:00",
-          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038607"
-        },
-        {
-          "teams": "011新喀里多 VS 牙买加",
-          "time": "2026-03-27 11:00",
-          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038609"
+          "teams": "002德国 VS 加纳",
+          "time": "2026-03-31 02:45",
+          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038681"
         }
       ]
     }
