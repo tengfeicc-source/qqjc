@@ -245,6 +245,8 @@
         .section:nth-child(4) { animation-delay: 0.8s; }
         .section:nth-child(5) { animation-delay: 0.95s; }
         .section:nth-child(6) { animation-delay: 1.1s; }
+        .section:nth-child(7) { animation-delay: 1.25s; }
+        .section:nth-child(8) { animation-delay: 1.4s; }
 
         .section-header {
             display: flex;
@@ -269,6 +271,7 @@
         .section-icon.green { background: var(--green-dim); }
         .section-icon.red { background: var(--red-dim); }
         .section-icon.accent { background: var(--accent-dim); }
+        .section-icon.orange { background: var(--orange-dim); }
 
         .section-title {
             font-size: 15px;
@@ -345,6 +348,82 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
+
+        /* 投资统计卡片 */
+        .investment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .investment-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .investment-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow);
+        }
+
+        .investment-value {
+            font-family: 'DM Mono', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .investment-card:nth-child(1) .investment-value { color: var(--accent); }
+        .investment-card:nth-child(2) .investment-value { color: var(--green); }
+
+        .investment-label {
+            font-size: 12px;
+            color: var(--text-dim);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .investment-sublabel {
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        /* 免责声明卡片 */
+        .disclaimer-card {
+            background: var(--surface);
+            border: 1px solid rgba(251, 146, 60, 0.15);
+            border-radius: 16px;
+            padding: 20px 22px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            transition: border-color 0.4s ease;
+        }
+
+        [data-theme="light"] .disclaimer-card { border-color: rgba(234, 88, 12, 0.15); }
+
+        .disclaimer-icon {
+            font-size: 20px;
+            width: 40px; height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--orange-dim);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .disclaimer-text { font-size: 13px; color: var(--text-muted); line-height: 1.8; }
+        .disclaimer-text strong { color: var(--orange); font-weight: 600; }
 
         .league-grid {
             display: grid;
@@ -458,7 +537,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* 链接指示器 */
         .has-link::after {
             content: '↗';
             font-size: 11px;
@@ -515,19 +593,9 @@
         .record-table tbody tr:last-child td { border-bottom: none; }
         .record-table tbody tr:hover td { background: rgba(128,128,128,0.03); }
 
-        /* 可点击行 */
-        .record-table tbody tr.clickable-row {
-            cursor: pointer;
-        }
-
-        .record-table tbody tr.clickable-row:hover td {
-            background: rgba(124, 110, 240, 0.05);
-        }
-
-        .record-table tbody tr.clickable-row td a {
-            color: inherit;
-            text-decoration: none;
-        }
+        .record-table tbody tr.clickable-row { cursor: pointer; }
+        .record-table tbody tr.clickable-row:hover td { background: rgba(124, 110, 240, 0.05); }
+        .record-table tbody tr.clickable-row td a { color: inherit; text-decoration: none; }
 
         .record-table .link-icon {
             font-size: 10px;
@@ -537,9 +605,7 @@
             transition: opacity 0.2s ease;
         }
 
-        .record-table tbody tr.clickable-row:hover .link-icon {
-            opacity: 1;
-        }
+        .record-table tbody tr.clickable-row:hover .link-icon { opacity: 1; }
 
         .badge {
             display: inline-flex;
@@ -605,11 +671,9 @@
             border-top: 1px solid var(--border);
         }
 
-        .scroll-hint::before {
-            content: '← 横向滑动查看完整表格 →';
-        }
+        .scroll-hint::before { content: '← 横向滑动查看完整表格 →'; }
 
-        /* ===== MODAL ===== */
+        /* MODAL */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -623,10 +687,7 @@
             transition: opacity 0.3s ease;
         }
 
-        .modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
+        .modal-overlay.active { display: flex; opacity: 1; }
 
         .modal-content {
             background: var(--surface);
@@ -641,9 +702,7 @@
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .modal-overlay.active .modal-content {
-            transform: scale(1) translateY(0);
-        }
+        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
 
         .modal-header {
             display: flex;
@@ -653,11 +712,7 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .modal-header h3 {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text);
-        }
+        .modal-header h3 { font-size: 18px; font-weight: 700; color: var(--text); }
 
         .modal-close {
             background: var(--surface-alt);
@@ -665,8 +720,7 @@
             color: var(--text-muted);
             font-size: 20px;
             cursor: pointer;
-            width: 32px;
-            height: 32px;
+            width: 32px; height: 32px;
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -675,11 +729,7 @@
             line-height: 1;
         }
 
-        .modal-close:hover {
-            color: var(--text);
-            border-color: var(--border-hover);
-            background: var(--surface);
-        }
+        .modal-close:hover { color: var(--text); border-color: var(--border-hover); background: var(--surface); }
 
         .modal-body {
             padding: 16px 24px 24px;
@@ -694,24 +744,10 @@
         }
 
         .match-item:last-child { border-bottom: none; }
+        .match-item.has-link { cursor: pointer; padding: 16px 10px; border-radius: 10px; margin: 0 -10px; }
+        .match-item.has-link:hover { background: rgba(124, 110, 240, 0.05); }
 
-        .match-item.has-link {
-            cursor: pointer;
-            padding: 16px 10px;
-            border-radius: 10px;
-            margin: 0 -10px;
-        }
-
-        .match-item.has-link:hover {
-            background: rgba(124, 110, 240, 0.05);
-        }
-
-        .match-teams {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 8px;
-        }
+        .match-teams { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
 
         .match-meta {
             display: flex;
@@ -722,11 +758,7 @@
             align-items: center;
         }
 
-        .match-prediction {
-            font-family: 'DM Mono', monospace;
-            color: var(--gold);
-            font-weight: 600;
-        }
+        .match-prediction { font-family: 'DM Mono', monospace; color: var(--gold); font-weight: 600; }
 
         .match-status-tag {
             padding: 2px 10px;
@@ -735,52 +767,22 @@
             font-weight: 600;
         }
 
-        .match-status-tag.ended {
-            background: var(--green-dim);
-            color: var(--green);
-        }
+        .match-status-tag.ended { background: var(--green-dim); color: var(--green); }
+        .match-status-tag.upcoming { background: var(--orange-dim); color: var(--orange); }
+        .match-status-tag.live { background: var(--red-dim); color: var(--red); animation: blink 1.5s ease-in-out infinite; }
 
-        .match-status-tag.upcoming {
-            background: var(--orange-dim);
-            color: var(--orange);
-        }
+        .match-link-hint { font-size: 10px; color: var(--accent); opacity: 0; transition: opacity 0.2s ease; }
+        .match-item.has-link:hover .match-link-hint { opacity: 1; }
 
-        .match-status-tag.live {
-            background: var(--red-dim);
-            color: var(--red);
-            animation: blink 1.5s ease-in-out infinite;
-        }
+        .modal-empty { text-align: center; color: var(--text-dim); padding: 40px 0; font-size: 13px; }
+        .modal-count-badge { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); font-weight: 500; }
 
-        .match-link-hint {
-            font-size: 10px;
-            color: var(--accent);
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        .match-item.has-link:hover .match-link-hint {
-            opacity: 1;
-        }
-
-        .modal-empty {
-            text-align: center;
-            color: var(--text-dim);
-            padding: 40px 0;
-            font-size: 13px;
-        }
-
-        .modal-count-badge {
-            font-family: 'DM Mono', monospace;
-            font-size: 12px;
-            color: var(--accent);
-            font-weight: 500;
-        }
-
-        /* ===== RESPONSIVE ===== */
+        /* RESPONSIVE */
         @media (max-width: 768px) and (min-width: 641px) {
             .wrapper { padding: 20px 24px 50px; }
             .hero h1 { font-size: 28px; }
             .stat-value { font-size: 26px; }
+            .investment-value { font-size: 26px; }
         }
 
         @media (max-width: 640px) {
@@ -792,35 +794,29 @@
             .meta-row { gap: 8px; }
             .meta-chip { padding: 5px 10px; font-size: 11px; }
             .live-clock { gap: 5px; font-size: 11px; }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .stat-card { padding: 16px 10px; border-radius: 14px; }
             .stat-value { font-size: 22px; }
             .stat-label { font-size: 10px; }
+            .investment-grid { grid-template-columns: 1fr; gap: 10px; }
+            .investment-card { padding: 16px 10px; border-radius: 14px; }
+            .investment-value { font-size: 22px; }
+            .investment-label { font-size: 11px; }
+            .investment-sublabel { font-size: 10px; }
+            .disclaimer-card { padding: 16px 14px; gap: 10px; border-radius: 14px; }
+            .disclaimer-icon { width: 34px; height: 34px; font-size: 16px; }
+            .disclaimer-text { font-size: 12px; }
             .league-grid { grid-template-columns: 1fr; gap: 8px; }
             .league-item { padding: 12px 14px; }
-            .rec-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-                padding: 14px 16px;
-            }
+            .rec-item { flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px 16px; }
             .rec-badge { align-self: flex-start; }
             .record-table { min-width: 480px; font-size: 12px; }
-            .record-table thead th,
-            .record-table tbody td { padding: 10px 8px; }
+            .record-table thead th, .record-table tbody td { padding: 10px 8px; }
             .scroll-hint { display: block; }
             .section { margin-top: 24px; }
             .section-title { font-size: 14px; }
             .section-title .sub { display: none; }
-            .theme-toggle {
-                width: 40px; height: 40px;
-                top: 12px; right: 12px;
-                font-size: 18px;
-                border-radius: 12px;
-            }
+            .theme-toggle { width: 40px; height: 40px; top: 12px; right: 12px; font-size: 18px; border-radius: 12px; }
             .tip-card { padding: 16px 14px; gap: 10px; border-radius: 14px; }
             .tip-icon { width: 34px; height: 34px; font-size: 16px; }
             .tip-text { font-size: 12px; }
@@ -841,6 +837,11 @@
             .stat-card { padding: 12px 6px; border-radius: 12px; }
             .stat-value { font-size: 18px; margin-bottom: 6px; }
             .stat-label { font-size: 9px; }
+            .investment-grid { gap: 8px; }
+            .investment-card { padding: 12px 6px; border-radius: 12px; }
+            .investment-value { font-size: 18px; margin-bottom: 6px; }
+            .investment-label { font-size: 10px; }
+            .investment-sublabel { font-size: 9px; }
             .section-header { margin-bottom: 10px; }
             .section-icon { width: 28px; height: 28px; font-size: 14px; }
             .section-title { font-size: 13px; }
@@ -848,14 +849,8 @@
             .rec-name { font-size: 13px; }
             .rec-badge { font-size: 12px; padding: 5px 12px; }
             .record-table { min-width: 440px; font-size: 11px; }
-            .record-table thead th,
-            .record-table tbody td { padding: 8px 6px; }
-            .theme-toggle {
-                width: 36px; height: 36px;
-                top: 10px; right: 10px;
-                font-size: 16px;
-                border-radius: 10px;
-            }
+            .record-table thead th, .record-table tbody td { padding: 8px 6px; }
+            .theme-toggle { width: 36px; height: 36px; top: 10px; right: 10px; font-size: 16px; border-radius: 10px; }
         }
 
         @media (max-height: 500px) and (orientation: landscape) {
@@ -868,6 +863,8 @@
             .section { margin-top: 20px; }
             .stat-card { padding: 12px 8px; }
             .stat-value { font-size: 20px; }
+            .investment-card { padding: 12px 8px; }
+            .investment-value { font-size: 20px; }
         }
 
         @keyframes fadeUp {
@@ -914,6 +911,34 @@
                 <span class="clock-time" id="clockTime">--:--:--</span>
                 <span class="clock-separator">|</span>
                 <span class="clock-date" id="clockDate">----/--/--</span>
+            </div>
+        </div>
+
+        <!-- 累计投入和累计盈利卡片 - 放在胜率统计上面 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon orange">💰</div>
+                <div class="section-title">累计盈亏</div>
+            </div>
+            <div class="investment-grid">
+                <div class="investment-card">
+                    <div class="investment-value" id="totalInvest">--</div>
+                    <div class="investment-label">累计投入</div>
+                    <div class="investment-sublabel">单位：元</div>
+                </div>
+                <div class="investment-card">
+                    <div class="investment-value" id="totalProfit">--</div>
+                    <div class="investment-label">累计盈利</div>
+                    <div class="investment-sublabel">单位：元</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 免责声明卡片 - 放在胜率统计上面 -->
+        <div class="section">
+            <div class="disclaimer-card">
+                <div class="disclaimer-icon">📢</div>
+                <div class="disclaimer-text"><strong>免责声明：</strong>本计划只做参考，不作为购买指导。胜负盈亏请自负，请勿完全相信本计划。</div>
             </div>
         </div>
 
@@ -1006,11 +1031,9 @@
     </div>
 
     <script>
-        // ===== 全局数据 =====
         var leaguesData = [];
         var globalSiteLink = '';
 
-        // ===== 主题切换 =====
         function toggleTheme() {
             var html = document.documentElement;
             var next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
@@ -1021,7 +1044,6 @@
             document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
         })();
 
-        // ===== 实时时钟 =====
         function updateClock() {
             var now = new Date();
             var h = String(now.getHours()).padStart(2, '0');
@@ -1037,7 +1059,6 @@
         updateClock();
         setInterval(updateClock, 1000);
 
-        // ===== 数字动画 =====
         function animateValue(id, start, end, dur, suf) {
             suf = suf || '';
             var el = document.getElementById(id);
@@ -1052,7 +1073,6 @@
             requestAnimationFrame(step);
         }
 
-        // ===== 根据比赛记录自动计算统计 =====
         function calcStatsFromRecords(records) {
             if (!records || records.length === 0) {
                 return { winRate: 0, totalPredict: 0, winCount: 0, streak: 0 };
@@ -1065,16 +1085,11 @@
             var winRate = totalPredict > 0 ? Math.round((winCount / totalPredict) * 100) : 0;
             var streak = 0;
             for (var i = 0; i < decided.length; i++) {
-                if (decided[i].result === '胜') {
-                    streak++;
-                } else {
-                    break;
-                }
+                if (decided[i].result === '胜') { streak++; } else { break; }
             }
             return { winRate: winRate, totalPredict: totalPredict, winCount: winCount, streak: streak };
         }
 
-        // ===== 根据比赛记录自动统计联赛 =====
         function calcLeaguesFromRecords(records) {
             if (!records || records.length === 0) return [];
             var leagueMap = {};
@@ -1087,43 +1102,30 @@
                 }
                 leagueMap[r.league].count++;
                 leagueMap[r.league].matches.push({
-                    teams: r.teams,
-                    time: r.date || '--',
-                    prediction: r.goals || '--',
+                    teams: r.teams, time: r.date || '--', prediction: r.goals || '--',
                     status: r.result === '待中' ? '未开始' : (r.score && r.score !== '未开始' ? '已结束' : '未开始'),
-                    score: r.score || '--',
-                    link: r.link || ''
+                    score: r.score || '--', link: r.link || ''
                 });
             });
             return leagueOrder.map(function(name) { return leagueMap[name]; });
         }
 
-        // ===== 安全打开链接 =====
         function openLink(url) {
-            if (url) {
-                window.open(url, '_blank', 'noopener,noreferrer');
-            }
+            if (url) { window.open(url, '_blank', 'noopener,noreferrer'); }
         }
 
-        // ===== 加载数据 =====
         function loadData() {
             fetch('/data.json')
                 .then(function(r) { return r.json(); })
                 .then(function(data) {
-
-                    // 全站链接
                     globalSiteLink = data.siteLink || '';
-
-                    // Logo链接
                     if (globalSiteLink) {
                         document.getElementById('heroLogo').style.cursor = 'pointer';
                         document.getElementById('heroLogo').onclick = function() { openLink(globalSiteLink); };
                     }
 
-                    // 1. 统计周期
                     document.getElementById('period').textContent = data.period || '--';
 
-                    // 2. 渲染比赛记录
                     var records = data.records || [];
                     document.getElementById('totalMatches').textContent = records.length;
 
@@ -1135,25 +1137,21 @@
                             var linkIcon = r.link ? '<span class="link-icon">↗</span>' : '';
                             var onclick = r.link ? ' onclick="openLink(\'' + r.link + '\')"' : '';
                             return '<tr' + rowClass + onclick + '>' +
-                                '<td>' + r.date + '</td>' +
-                                '<td>' + r.league + '</td>' +
+                                '<td>' + r.date + '</td><td>' + r.league + '</td>' +
                                 '<td style="text-align:left;font-weight:500;color:var(--text)">' + r.teams + linkIcon + '</td>' +
-                                '<td>' + sc + '</td>' +
-                                '<td style="font-family:DM Mono,monospace;font-weight:600">' + r.goals + '</td>' +
+                                '<td>' + sc + '</td><td style="font-family:DM Mono,monospace;font-weight:600">' + r.goals + '</td>' +
                                 '<td><span class="badge ' + bc + '">' + r.result + '</span></td></tr>';
                         }).join('');
                     } else {
                         document.getElementById('recordBody').innerHTML = '<tr><td colspan="6" style="color:var(--text-dim);padding:30px">暂无比赛记录</td></tr>';
                     }
 
-                    // 3. 自动计算胜率统计
                     var stats = calcStatsFromRecords(records);
                     animateValue('winRate', 0, stats.winRate, 1200, '%');
                     animateValue('totalPredict', 0, stats.totalPredict, 1200);
                     animateValue('winCount', 0, stats.winCount, 1200);
                     animateValue('streak', 0, stats.streak, 800);
 
-                    // 4. 联赛数据
                     if (data.leagues && data.leagues.length > 0) {
                         leaguesData = data.leagues;
                     } else {
@@ -1161,7 +1159,18 @@
                     }
                     renderLeagues(leaguesData);
 
-                    // 5. 今日推荐
+                    // 累计投入和累计盈利
+                    if (data.totalInvest !== undefined) {
+                        animateValue('totalInvest', 0, data.totalInvest, 1200, '');
+                    } else {
+                        document.getElementById('totalInvest').textContent = '--';
+                    }
+                    if (data.totalProfit !== undefined) {
+                        animateValue('totalProfit', 0, data.totalProfit, 1200, '');
+                    } else {
+                        document.getElementById('totalProfit').textContent = '--';
+                    }
+
                     if (data.recommendations && data.recommendations.length > 0) {
                         document.getElementById('recommendList').innerHTML = data.recommendations.map(function(item, i) {
                             var hasLink = item.link ? ' has-link' : '';
@@ -1174,20 +1183,17 @@
                         }).join('');
                     } else {
                         document.getElementById('recommendList').innerHTML =
-                            '<div class="rec-item"><div class="rec-icon">📭</div>' +
-                            '<div class="rec-info"><div class="rec-name">暂无推荐</div></div></div>';
+                            '<div class="rec-item"><div class="rec-icon">📭</div><div class="rec-info"><div class="rec-name">暂无推荐</div></div></div>';
                     }
                 })
                 .catch(function() {
                     document.getElementById('recommendList').innerHTML =
-                        '<div class="rec-item"><div class="rec-icon">⚠️</div>' +
-                        '<div class="rec-info"><div class="rec-name">数据加载失败，请检查 data.json</div></div></div>';
+                        '<div class="rec-item"><div class="rec-icon">⚠️</div><div class="rec-info"><div class="rec-name">数据加载失败，请检查 data.json</div></div></div>';
                     document.getElementById('recordBody').innerHTML =
                         '<tr><td colspan="6" style="color:var(--text-dim);padding:30px">数据加载失败</td></tr>';
                 });
         }
 
-        // ===== 渲染联赛列表 =====
         function renderLeagues(leagues) {
             if (!leagues || leagues.length === 0) {
                 document.getElementById('leagueList').innerHTML =
@@ -1202,14 +1208,11 @@
             }).join('');
         }
 
-        // ===== 打开联赛详情模态窗口 =====
         function openLeagueModal(leagueIndex) {
             var league = leaguesData[leagueIndex];
             if (!league) return;
-
             document.getElementById('modalLeagueName').textContent = league.name;
             document.getElementById('modalCountBadge').textContent = '共 ' + league.count + ' 场比赛';
-
             var container = document.getElementById('modalMatchList');
             if (league.matches && league.matches.length > 0) {
                 container.innerHTML = league.matches.map(function(match) {
@@ -1220,27 +1223,22 @@
                     var linkHint = match.link ? '<span class="match-link-hint">点击查看详情 ↗</span>' : '';
                     return '<div class="match-item' + hasLink + '"' + onclick + '>' +
                         '<div class="match-teams">' + match.teams + '</div>' +
-                        '<div class="match-meta">' +
-                            '<span>⏰ ' + match.time + '</span>' +
-                            (match.score && match.score !== '--' ? '<span>⚽ ' + match.score + '</span>' : '') +
-                            '<span class="match-prediction">🎯 ' + match.prediction + '</span>' +
-                            '<span class="match-status-tag ' + statusClass + '">' + statusText + '</span>' +
-                            linkHint +
-                        '</div></div>';
+                        '<div class="match-meta"><span>⏰ ' + match.time + '</span>' +
+                        (match.score && match.score !== '--' ? '<span>⚽ ' + match.score + '</span>' : '') +
+                        '<span class="match-prediction">🎯 ' + match.prediction + '</span>' +
+                        '<span class="match-status-tag ' + statusClass + '">' + statusText + '</span>' +
+                        linkHint + '</div></div>';
                 }).join('');
             } else {
                 container.innerHTML = '<div class="modal-empty">暂无详细比赛信息</div>';
             }
-
             var modal = document.getElementById('leagueModal');
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        // ===== 关闭模态窗口 =====
         function closeLeagueModal() {
-            var modal = document.getElementById('leagueModal');
-            modal.classList.remove('active');
+            document.getElementById('leagueModal').classList.remove('active');
             document.body.style.overflow = '';
         }
 
@@ -1252,7 +1250,6 @@
             if (e.key === 'Escape') closeLeagueModal();
         });
 
-        // ===== 启动 =====
         loadData();
     </script>
 </body>
