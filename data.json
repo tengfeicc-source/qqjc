@@ -1,5 +1,7 @@
 {
   "period": "2026-03-01 至 2026-04-01",
+  "totalInvest": 10000,
+  "totalProfit": 2500,
   "recommendations": [
     {
       "icon": "🔥",
@@ -19,7 +21,7 @@
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038372"
     },
     {
-      "date": "3-18",
+      "date": "03-18",
       "league": "欧冠",
       "teams": "曼城 VS 皇马",
       "score": "1-2",
@@ -48,7 +50,7 @@
     {
       "date": "03-21",
       "league": "英超",
-      "teams": "伯恩茅斯 VS曼联",
+      "teams": "伯恩茅斯 VS 曼联",
       "score": "2-2",
       "goals": "2+3",
       "result": "负",
@@ -57,7 +59,7 @@
     {
       "date": "03-22",
       "league": "英超",
-      "teams": "维拉VS西汉姆联",
+      "teams": "维拉 VS 西汉姆联",
       "score": "2-0",
       "goals": "2+3",
       "result": "胜",
@@ -66,7 +68,7 @@
     {
       "date": "03-23",
       "league": "西甲",
-      "teams": "毕尔巴鄂VS贝蒂斯",
+      "teams": "毕尔巴鄂 VS 贝蒂斯",
       "score": "2-1",
       "goals": "2+3",
       "result": "胜",
@@ -75,7 +77,7 @@
     {
       "date": "03-25",
       "league": "英甲",
-      "teams": "唐卡斯特VS维尔港",
+      "teams": "唐卡斯特 VS 维尔港",
       "score": "1-0",
       "goals": "2+3",
       "result": "负",
@@ -102,7 +104,7 @@
     {
       "date": "03-27",
       "league": "世预赛",
-      "teams": "澳大利亚 vs 喀麦隆",
+      "teams": "澳大利亚 VS 喀麦隆",
       "score": "1-0",
       "goals": "3+4",
       "result": "负",
@@ -111,7 +113,7 @@
     {
       "date": "03-27",
       "league": "世预赛",
-      "teams": "西班牙 vs 塞尔维亚",
+      "teams": "西班牙 VS 塞尔维亚",
       "score": "3-0",
       "goals": "2+3",
       "result": "胜",
@@ -138,23 +140,32 @@
   ],
   "leagues": [
     {
-      "name": "世预赛",
+      "name": "国际赛",
       "count": 3,
       "link": "https://www.sporttery.cn/jc/jsq/zqspf/",
       "matches": [
         {
-          "teams": "001哥伦比亚 VS 法国",
+          "teams": "001 哥伦比亚 VS 法国",
           "time": "2026-03-30 03:00",
+          "prediction": "3+4",
+          "status": "未开始",
+          "score": "--",
           "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038679"
         },
         {
-          "teams": "001新西兰VS智利",
+          "teams": "001 新西兰 VS 智利",
           "time": "2026-03-30 14:00",
+          "prediction": "--",
+          "status": "未开始",
+          "score": "--",
           "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038680"
         },
         {
-          "teams": "002德国 VS 加纳",
+          "teams": "002 德国 VS 加纳",
           "time": "2026-03-31 02:45",
+          "prediction": "--",
+          "status": "未开始",
+          "score": "--",
           "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038681"
         }
       ]
