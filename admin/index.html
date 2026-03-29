@@ -33,6 +33,32 @@
     .btn-logout { background: #21262d; color: #f85149; border: 1px solid #30363d; }
     .sub-label { margin-top: 16px; font-weight: 600; color: #f0f6fc; font-size: 13px; padding-top: 12px; border-top: 1px solid #30363d; }
 
+    /* 投资卡片样式 */
+    .invest-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .invest-card {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+    .invest-card label { text-align: center; font-size: 14px; color: #f0f6fc; font-weight: 600; margin-top: 0; }
+    .invest-card input {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      font-family: 'SF Mono', 'Consolas', monospace;
+      padding: 14px 10px;
+      margin-top: 10px;
+    }
+    .invest-card .unit { font-size: 12px; color: #8b949e; margin-top: 6px; }
+    .invest-card:nth-child(1) input { color: #7c6ef0; }
+    .invest-card:nth-child(2) input { color: #34d399; }
+
     /* Modal 样式 */
     .modal-overlay {
       display: none;
@@ -82,27 +108,50 @@
       <p>首次使用请 <a href="https://github.com/settings/tokens/new?scopes=repo&description=admin" target="_blank">创建 Token</a>，勾选 repo 权限</p>
     </div>
   </div>
+
   <div class="admin" id="adminPage">
     <h1>网站数据管理</h1>
+
     <div class="section">
       <h3>基本设置</h3>
-      <label>统计周期</label><input type="text" id="period" />
+      <label>统计周期</label><input type="text" id="period" placeholder="例如：2026-03-01 至 2026-04-01" />
     </div>
+
+    <!-- 新增：累计盈亏 -->
+    <div class="section">
+      <h3>💰 累计盈亏</h3>
+      <div class="invest-grid">
+        <div class="invest-card">
+          <label>累计投入</label>
+          <input type="number" id="totalInvest" value="0" placeholder="0" />
+          <div class="unit">单位：元</div>
+        </div>
+        <div class="invest-card">
+          <label>累计盈利</label>
+          <input type="number" id="totalProfit" value="0" placeholder="0" />
+          <div class="unit">单位：元</div>
+        </div>
+      </div>
+    </div>
+
     <div class="section">
       <h3>推荐列表</h3>
       <div id="recList"></div>
       <button class="add-btn" onclick="addRec()">+ 添加推荐项</button>
     </div>
+
     <div class="section">
       <h3>比赛记录</h3>
       <div id="recList2"></div>
       <button class="add-btn" onclick="addRecord()">+ 添加比赛记录</button>
     </div>
+
     <div class="section">
       <h3>热门联赛</h3>
       <div id="leagueList"></div>
       <button class="add-btn" onclick="addLeague()">+ 添加联赛</button>
     </div>
+
     <div class="actions">
       <button class="btn-save" onclick="doSave()">保存并提交</button>
       <button class="btn-logout" onclick="doLogout()">退出登录</button>
@@ -123,7 +172,6 @@
     var REPO='tengfeicc-source/qqjc',BRANCH='main',FILE='data.json';
     var TOKEN=localStorage.getItem('gh_token')||'',SHA='';
 
-    // 显示弹出框
     function showModal(type, title, message){
       var modal = document.getElementById('modal');
       var icon = document.getElementById('modalIcon');
@@ -195,6 +243,11 @@
 
     function render(d){
       document.getElementById('period').value=d.period||'';
+
+      // 累计盈亏
+      document.getElementById('totalInvest').value=d.totalInvest!==undefined?d.totalInvest:0;
+      document.getElementById('totalProfit').value=d.totalProfit!==undefined?d.totalProfit:0;
+
       document.getElementById('recList').innerHTML='';
       (d.recommendations||[]).forEach(function(r){addRec(r);});
       document.getElementById('recList2').innerHTML='';
@@ -256,10 +309,7 @@
     function addLeagueMatch(btn,data){
       data=data||{};
       var container=btn.previousElementSibling;
-      if(!container){
-        console.error('找不到容器元素');
-        return;
-      }
+      if(!container) return;
       var div=document.createElement('div');
       div.className='list-item';
       div.style.marginTop='8px';
@@ -267,11 +317,17 @@
         '<button class="remove" onclick="this.parentElement.remove()">删除</button>'+
         '<label>比赛双方</label><input class="lm-teams" value="'+(data.teams||'')+'">'+
         '<label>时间</label><input class="lm-time" value="'+(data.time||'')+'">'+
+        '<label>预测</label><input class="lm-prediction" value="'+(data.prediction||'')+'">'+
+        '<label>状态</label><select class="lm-status">'+
+          '<option value="未开始"'+(data.status==='未开始'?' selected':'')+'>未开始</option>'+
+          '<option value="进行中"'+(data.status==='进行中'?' selected':'')+'>进行中</option>'+
+          '<option value="已结束"'+(data.status==='已结束'?' selected':'')+'>已结束</option>'+
+        '</select>'+
+        '<label>比分</label><input class="lm-score" value="'+(data.score||'--')+'">'+
         '<label>跳转链接</label><input class="lm-link" value="'+(data.link||'')+'">';
       container.appendChild(div);
     }
 
-    // 安全获取值的函数
     function getSafeValue(element, selector) {
       if (!element) return '';
       var el = element.querySelector(selector);
@@ -279,68 +335,70 @@
     }
 
     function collect(){
-  var r=[];
-  var recItems = document.querySelectorAll('#recList .list-item');
-  for(var i=0; i<recItems.length; i++){
-    var e = recItems[i];
-    r.push({
-      icon:getSafeValue(e, '.r-icon'),
-      name:getSafeValue(e, '.r-name'),
-      prediction:getSafeValue(e, '.r-pred'),
-      link:getSafeValue(e, '.r-link') || ''
-    });
-  }
+      var r=[];
+      var recItems = document.querySelectorAll('#recList .list-item');
+      for(var i=0; i<recItems.length; i++){
+        var e = recItems[i];
+        r.push({
+          icon:getSafeValue(e, '.r-icon'),
+          name:getSafeValue(e, '.r-name'),
+          prediction:getSafeValue(e, '.r-pred'),
+          link:getSafeValue(e, '.r-link') || ''
+        });
+      }
 
-  var c=[];
-  var recordItems = document.querySelectorAll('#recList2 .list-item');
-  for(var j=0; j<recordItems.length; j++){
-    var e2 = recordItems[j];
-    c.push({
-      date:getSafeValue(e2, '.c-date'),
-      league:getSafeValue(e2, '.c-league'),
-      teams:getSafeValue(e2, '.c-teams'),
-      score:getSafeValue(e2, '.c-score'),
-      goals:getSafeValue(e2, '.c-goals'),
-      result:getSafeValue(e2, '.c-result'),
-      link:getSafeValue(e2, '.c-link') || ''
-    });
-  }
+      var c=[];
+      var recordItems = document.querySelectorAll('#recList2 .list-item');
+      for(var j=0; j<recordItems.length; j++){
+        var e2 = recordItems[j];
+        c.push({
+          date:getSafeValue(e2, '.c-date'),
+          league:getSafeValue(e2, '.c-league'),
+          teams:getSafeValue(e2, '.c-teams'),
+          score:getSafeValue(e2, '.c-score'),
+          goals:getSafeValue(e2, '.c-goals'),
+          result:getSafeValue(e2, '.c-result'),
+          link:getSafeValue(e2, '.c-link') || ''
+        });
+      }
 
-  var leagues=[];
-  // ✅ 用 > 只取直接子级，避免嵌套的比赛卡片被当成联赛
-  var leagueItems = document.querySelectorAll('#leagueList > .list-item');
-  for(var k=0; k<leagueItems.length; k++){
-    var e3 = leagueItems[k];
-    var matches=[];
-    var matchItems = e3.querySelectorAll('.l-matches .list-item');
-    for(var m=0; m<matchItems.length; m++){
-      var matchEl = matchItems[m];
-      matches.push({
-        teams:getSafeValue(matchEl, '.lm-teams'),
-        time:getSafeValue(matchEl, '.lm-time'),
-        link:getSafeValue(matchEl, '.lm-link') || ''
-      });
+      var leagues=[];
+      var leagueItems = document.querySelectorAll('#leagueList > .list-item');
+      for(var k=0; k<leagueItems.length; k++){
+        var e3 = leagueItems[k];
+        var matches=[];
+        var matchItems = e3.querySelectorAll('.l-matches .list-item');
+        for(var m=0; m<matchItems.length; m++){
+          var matchEl = matchItems[m];
+          matches.push({
+            teams:getSafeValue(matchEl, '.lm-teams'),
+            time:getSafeValue(matchEl, '.lm-time'),
+            prediction:getSafeValue(matchEl, '.lm-prediction'),
+            status:getSafeValue(matchEl, '.lm-status'),
+            score:getSafeValue(matchEl, '.lm-score'),
+            link:getSafeValue(matchEl, '.lm-link') || ''
+          });
+        }
+        var lName = e3.querySelector('.l-name');
+        var lCount = e3.querySelector('.l-count');
+        var lLink = e3.querySelector('.l-link');
+        leagues.push({
+          name: lName ? lName.value : '',
+          count: lCount ? (parseInt(lCount.value) || matches.length) : matches.length,
+          link: lLink ? lLink.value : '',
+          matches: matches
+        });
+      }
+
+      return {
+        period: document.getElementById('period').value,
+        totalInvest: parseInt(document.getElementById('totalInvest').value) || 0,
+        totalProfit: parseInt(document.getElementById('totalProfit').value) || 0,
+        recommendations: r,
+        records: c,
+        leagues: leagues
+      };
     }
-    var lName = e3.querySelector('.l-name');
-    var lCount = e3.querySelector('.l-count');
-    var lLink = e3.querySelector('.l-link');
-    leagues.push({
-      name: lName ? lName.value : '',
-      count: lCount ? (parseInt(lCount.value) || matches.length) : matches.length,
-      link: lLink ? lLink.value : '',
-      matches: matches
-    });
-  }
-
-  return {
-    period: document.getElementById('period').value,
-    recommendations: r,
-    records: c,
-    leagues: leagues
-  };
-}
-
-
 
     async function doSave(){
       showModal('info', '保存中', '正在提交数据到 GitHub，请稍候...');
