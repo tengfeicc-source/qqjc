@@ -5,9 +5,15 @@
   "recommendations": [
     {
       "icon": "🔥",
-      "name": "002德国VS加纳",
-      "prediction": "3+4",
+      "name": "017西班牙VS埃及",
+      "prediction": "3",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038679"
+    },
+    {
+      "icon": "⭐",
+      "name": "014瑞典VS波兰",
+      "prediction": "2",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038732"
     }
   ],
   "records": [
@@ -145,6 +151,15 @@
       "goals": "3+4",
       "result": "胜",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038679"
+    },
+    {
+      "date": "03-30",
+      "league": "国际赛",
+      "teams": "德国VS加纳",
+      "score": "2-1",
+      "goals": "3+4",
+      "result": "胜",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038681"
     }
   ],
   "leagues": [
