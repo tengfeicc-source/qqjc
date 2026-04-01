@@ -5,14 +5,14 @@
   "recommendations": [
     {
       "icon": "🔥",
-      "name": "017西班牙VS埃及",
-      "prediction": "3",
+      "name": "001神户胜利船VS清水鼓动",
+      "prediction": "2+3",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038679"
     },
     {
       "icon": "⭐",
-      "name": "014瑞典VS波兰",
-      "prediction": "2",
+      "name": "002町田泽维亚VS东京FC",
+      "prediction": "1+2",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038732"
     }
   ],
@@ -160,6 +160,24 @@
       "goals": "3+4",
       "result": "胜",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038681"
+    },
+    {
+      "date": "03-31",
+      "league": "国际赛",
+      "teams": "西班牙VS埃及",
+      "score": "0-0",
+      "goals": "3",
+      "result": "负",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038735"
+    },
+    {
+      "date": "03-31",
+      "league": "世预赛",
+      "teams": "瑞典VS波兰",
+      "score": "3-2",
+      "goals": "2",
+      "result": "负",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038732"
     }
   ],
   "leagues": [
