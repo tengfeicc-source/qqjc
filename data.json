@@ -5,14 +5,14 @@
   "recommendations": [
     {
       "icon": "🔥",
-      "name": "001神户胜利船VS清水鼓动",
-      "prediction": "2+3",
+      "name": "001 麦克阿瑟 VS 纽喷气机",
+      "prediction": "3+4",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038679"
     },
     {
       "icon": "⭐",
-      "name": "002町田泽维亚VS东京FC",
-      "prediction": "1+2",
+      "name": "002 布里斯班 VS 悉尼FC",
+      "prediction": "2+3",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038732"
     }
   ],
@@ -178,6 +178,24 @@
       "goals": "2",
       "result": "负",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038732"
+    },
+    {
+      "date": "4-1",
+      "league": "日职",
+      "teams": "神户胜利船VS清水鼓动",
+      "score": "2-0",
+      "goals": "2+3",
+      "result": "胜",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038742"
+    },
+    {
+      "date": "4-1",
+      "league": "日职",
+      "teams": "町田泽维亚VS东京FC",
+      "score": "0-3",
+      "goals": "1+2",
+      "result": "负",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038743"
     }
   ],
   "leagues": [
