@@ -5,15 +5,9 @@
   "recommendations": [
     {
       "icon": "🔥",
-      "name": "001 阿德莱德 1 : 1 奥克兰FC",
-      "prediction": "2+3",
-      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038782"
-    },
-    {
-      "icon": "⭐",
-      "name": "002 米堡 VS 米尔沃尔",
-      "prediction": "2+3",
-      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038783"
+      "name": "009 赫塔费 VS 毕尔巴鄂",
+      "prediction": "1+2",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038844"
     }
   ],
   "records": [
@@ -196,6 +190,42 @@
       "goals": "1+2",
       "result": "负",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038743"
+    },
+    {
+      "date": "4月3日",
+      "league": "澳超",
+      "teams": "阿德莱德 VS 奥克兰FC",
+      "score": "1-1",
+      "goals": "2+3",
+      "result": "胜",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038782"
+    },
+    {
+      "date": "4月3日",
+      "league": "英冠",
+      "teams": "米堡 VS 米尔沃尔",
+      "score": "1-2",
+      "goals": "2+3",
+      "result": "胜",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038783"
+    },
+    {
+      "date": "4月4日",
+      "league": "德甲",
+      "teams": "汉堡 VS 奥格斯堡",
+      "score": "1-1",
+      "goals": "2+3",
+      "result": "胜",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038822"
+    },
+    {
+      "date": "4月5日",
+      "league": "西甲",
+      "teams": "赫塔费 VS 毕尔巴鄂",
+      "score": "",
+      "goals": "1+2",
+      "result": "待中",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038844"
     }
   ],
   "leagues": [
@@ -203,32 +233,7 @@
       "name": "国际赛",
       "count": 3,
       "link": "https://www.sporttery.cn/jc/jsq/zqspf/",
-      "matches": [
-        {
-          "teams": "001 哥伦比亚 VS 法国",
-          "time": "2026-03-30 03:00",
-          "prediction": "3+4",
-          "status": "未开始",
-          "score": "--",
-          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038679"
-        },
-        {
-          "teams": "001 新西兰 VS 智利",
-          "time": "2026-03-30 14:00",
-          "prediction": "--",
-          "status": "未开始",
-          "score": "--",
-          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038680"
-        },
-        {
-          "teams": "002 德国 VS 加纳",
-          "time": "2026-03-31 02:45",
-          "prediction": "--",
-          "status": "未开始",
-          "score": "--",
-          "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038681"
-        }
-      ]
+      "matches": []
     }
   ]
 }
