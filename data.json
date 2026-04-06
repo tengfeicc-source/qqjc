@@ -5,21 +5,9 @@
   "recommendations": [
     {
       "icon": "🔥",
-      "name": "004  米尔沃尔 vs 诺维奇",
-      "prediction": "2+3",
-      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038865"
-    },
-    {
-      "icon": "⭐",
-      "name": "014  赫尔城 vs 考文垂",
-      "prediction": "2+3",
-      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038875"
-    },
-    {
-      "icon": "⭐",
-      "name": "015  赫罗纳 vs 比利亚雷亚尔",
+      "name": "009 布莱克苯VS西布罗姆维奇",
       "prediction": "1+2",
-      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038876"
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038865"
     }
   ],
   "records": [
@@ -242,29 +230,11 @@
     {
       "date": "4月6日",
       "league": "英冠",
-      "teams": "米尔沃尔 vs 诺维奇",
-      "score": "",
-      "goals": "2+3",
-      "result": "待中",
-      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038865"
-    },
-    {
-      "date": "4月6日",
-      "league": "英冠",
-      "teams": "赫尔城 vs 考文垂",
-      "score": "",
-      "goals": "2+3",
-      "result": "待中",
-      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038875"
-    },
-    {
-      "date": "4月6日",
-      "league": "西甲",
-      "teams": "赫罗纳 vs 比利亚雷亚尔",
+      "teams": "布莱克苯VS西布罗姆维奇",
       "score": "",
       "goals": "1+2",
       "result": "待中",
-      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038876"
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038865"
     }
   ],
   "leagues": [
