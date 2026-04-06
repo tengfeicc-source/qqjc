@@ -5,9 +5,21 @@
   "recommendations": [
     {
       "icon": "🔥",
-      "name": "009 赫塔费 VS 毕尔巴鄂",
+      "name": "004  米尔沃尔 vs 诺维奇",
+      "prediction": "2+3",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038865"
+    },
+    {
+      "icon": "⭐",
+      "name": "014  赫尔城 vs 考文垂",
+      "prediction": "2+3",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038875"
+    },
+    {
+      "icon": "⭐",
+      "name": "015  赫罗纳 vs 比利亚雷亚尔",
       "prediction": "1+2",
-      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038844"
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038876"
     }
   ],
   "records": [
