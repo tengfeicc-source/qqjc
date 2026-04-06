@@ -1,7 +1,7 @@
 {
   "period": "2026-03-01 至 2026-04-01",
-  "totalInvest": 4600,
-  "totalProfit": 4015,
+  "totalInvest": 4800,
+  "totalProfit": 4220,
   "recommendations": [
     {
       "icon": "🔥",
@@ -222,9 +222,9 @@
       "date": "4月5日",
       "league": "西甲",
       "teams": "赫塔费 VS 毕尔巴鄂",
-      "score": "",
+      "score": "2-0",
       "goals": "1+2",
-      "result": "待中",
+      "result": "胜",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038844"
     }
   ],
