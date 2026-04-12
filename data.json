@@ -1,7 +1,7 @@
 {
   "period": "2026-03-01 至 2026-04-06",
-  "totalInvest": 5000,
-  "totalProfit": 4220,
+  "totalInvest": 5200,
+  "totalProfit": 4508,
   "recommendations": [
     {
       "icon": "🔥",
@@ -235,6 +235,15 @@
       "goals": "1+2",
       "result": "负",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038865"
+    },
+    {
+      "date": "4月11日",
+      "league": "意甲",
+      "teams": "卡利里亚VS克雷默那",
+      "score": "1-0",
+      "goals": "1+2",
+      "result": "胜",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2039012"
     }
   ],
   "leagues": [
