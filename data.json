@@ -1,13 +1,13 @@
 {
   "period": "2026-03-01 至 2026-04-06",
-  "totalInvest": 5200,
-  "totalProfit": 4508,
+  "totalInvest": 5400,
+  "totalProfit": 4638,
   "recommendations": [
     {
       "icon": "🔥",
-      "name": "周五007",
-      "prediction": "2+3",
-      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2038865"
+      "name": "周日006克雷莫纳 VS 都灵",
+      "prediction": "1+2",
+      "link": "https://www.sporttery.cn/jc/zqdz/?mid=2039184&showType=4"
     }
   ],
   "records": [
@@ -244,6 +244,15 @@
       "goals": "1+2",
       "result": "胜",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2039012"
+    },
+    {
+      "date": "4月17日",
+      "league": "德甲",
+      "teams": "圣保利 VS 科隆",
+      "score": "1-1",
+      "goals": "1+2",
+      "result": "胜",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2039141"
     }
   ],
   "leagues": [
