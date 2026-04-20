@@ -5,8 +5,8 @@
   "recommendations": [
     {
       "icon": "🔥",
-      "name": "周日006克雷莫纳 VS 都灵",
-      "prediction": "1+2",
+      "name": "周一001莱切VS佛罗伦萨",
+      "prediction": "2+3（比分0:1 0:2 1:2）",
       "link": "https://www.sporttery.cn/jc/zqdz/?mid=2039184&showType=4"
     }
   ],
@@ -253,6 +253,24 @@
       "goals": "1+2",
       "result": "胜",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2039141"
+    },
+    {
+      "date": "04.19",
+      "league": "意甲",
+      "teams": "周日006克雷莫纳 VS 都灵",
+      "score": "0:0",
+      "goals": "1+2",
+      "result": "负",
+      "link": ""
+    },
+    {
+      "date": "04.20",
+      "league": "意甲",
+      "teams": "莱切VS佛罗伦萨",
+      "score": "",
+      "goals": "",
+      "result": "胜",
+      "link": ""
     }
   ],
   "leagues": [
