@@ -1,13 +1,13 @@
 {
   "period": "2026-03-01 至 2026-04-06",
-  "totalInvest": 5400,
+  "totalInvest": 5900,
   "totalProfit": 4638,
   "recommendations": [
     {
       "icon": "🔥",
-      "name": "周一001莱切VS佛罗伦萨",
-      "prediction": "2+3（比分0:1 0:2 1:2）",
-      "link": "https://www.sporttery.cn/jc/zqdz/?mid=2039184&showType=4"
+      "name": "周一004马洛卡 VS 巴伦西亚",
+      "prediction": "1+2（比分0:1 1:0 1:1）",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2039243"
     }
   ],
   "records": [
@@ -264,13 +264,13 @@
       "link": ""
     },
     {
-      "date": "04.20",
+      "date": "4月20日",
       "league": "意甲",
       "teams": "莱切VS佛罗伦萨",
-      "score": "",
-      "goals": "",
-      "result": "胜",
-      "link": ""
+      "score": "0-1",
+      "goals": "2+3（比分0:1 0:2 1:2）",
+      "result": "负",
+      "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2039207"
     }
   ],
   "leagues": [
