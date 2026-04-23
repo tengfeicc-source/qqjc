@@ -5,8 +5,8 @@
   "recommendations": [
     {
       "icon": "🔥",
-      "name": "周二007皇家社会 VS 赫塔费",
-      "prediction": "2+3（比分1-0 2-0 2-1）",
+      "name": "周三005巴列卡诺 VS 西班牙人",
+      "prediction": "2+1（比分1-0 2-0 1-1）",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2039243"
     }
   ],
@@ -280,6 +280,15 @@
       "goals": "1+2（1-0，0-1，1-1）",
       "result": "胜",
       "link": "https://www.sporttery.cn/jc/zqdz/index.html?showType=2&mid=2039243"
+    },
+    {
+      "date": "4月22日",
+      "league": "西甲",
+      "teams": "皇家社会VS赫塔费",
+      "score": "0-1",
+      "goals": "2+3",
+      "result": "负",
+      "link": ""
     }
   ],
   "leagues": [
