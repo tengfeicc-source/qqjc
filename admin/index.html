@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>后台管理</title>
+  <title>小静竞彩后台管理</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
@@ -97,12 +97,46 @@
     .modal-btn.ok { background: #238636; color: #fff; }
     .modal-btn.err { background: #da3633; color: #fff; }
     .modal-btn:hover { opacity: 0.9; }
+
+
+    /* 小静竞彩后台轻量美化 */
+    body {
+      background:
+        radial-gradient(circle at 10% 0%, rgba(255, 209, 102, 0.12), transparent 26%),
+        radial-gradient(circle at 92% 8%, rgba(139, 92, 246, 0.18), transparent 32%),
+        #0b0f18;
+    }
+    .box, .section, .modal-content {
+      border-radius: 18px;
+      background: rgba(22, 27, 34, 0.84);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.28);
+    }
+    .admin h1, .box h2 {
+      background: linear-gradient(120deg, #fff, #ffd166 55%, #ff8a3d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section input:focus, .section select:focus, .box input:focus {
+      outline: none;
+      border-color: #ffd166;
+      box-shadow: 0 0 0 3px rgba(255,209,102,0.10);
+    }
+    .btn-save, .box button {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+    }
+    .add-btn:hover {
+      border-color: #ffd166;
+      color: #ffd166;
+    }
+
   </style>
 </head>
 <body>
   <div class="page" id="loginPage">
     <div class="box">
-      <h2>后台管理登录</h2>
+      <h2>小静竞彩后台登录</h2>
       <input type="password" id="tokenInput" placeholder="GitHub Personal Access Token" />
       <button onclick="doLogin()">登录</button>
       <p>首次使用请 <a href="https://github.com/settings/tokens/new?scopes=repo&description=admin" target="_blank">创建 Token</a>，勾选 repo 权限</p>
@@ -110,7 +144,7 @@
   </div>
 
   <div class="admin" id="adminPage">
-    <h1>网站数据管理</h1>
+    <h1>小静竞彩数据管理</h1>
 
     <div class="section">
       <h3>基本设置</h3>
